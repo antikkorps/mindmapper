@@ -1,6 +1,7 @@
 # MindMapper - TODO List
 
 ## Current Status
+
 - ✅ Project structure setup (monorepo)
 - ✅ Dependencies installed
 - ✅ PostgreSQL configured (Docker)
@@ -14,6 +15,7 @@
 ## Phase 1: MVP (Core Features)
 
 ### Backend API
+
 - [ ] Implement database migrations
   - [ ] Run initial migrations
   - [ ] Test database schema
@@ -38,6 +40,7 @@
   - [ ] Optimize queries with eager loading
 
 ### Frontend UI
+
 - [ ] Core Components
   - [ ] Dashboard view (list of maps)
   - [ ] Map editor view (Vue Flow canvas)
@@ -67,6 +70,7 @@
   - [ ] Success/error notifications
 
 ### Testing
+
 - [ ] Backend Tests
   - [ ] Unit tests for services
   - [ ] Integration tests for API routes
@@ -83,6 +87,7 @@
     - [ ] Drag and drop nodes
 
 ### Documentation
+
 - [ ] API documentation (endpoints, request/response)
 - [ ] Component documentation (props, events)
 - [ ] Setup instructions (README)
@@ -93,6 +98,7 @@
 ## Phase 2: Enhanced Features
 
 ### UI/UX Improvements
+
 - [ ] Auto-layout with Dagre
   - [ ] Install @vue-flow/dagre
   - [ ] Implement auto-arrange algorithm
@@ -121,6 +127,7 @@
   - [ ] Save (Ctrl+S)
 
 ### Performance Optimization
+
 - [ ] Frontend
   - [ ] Lazy loading for large mindmaps (>1000 nodes)
   - [ ] Virtual scrolling for dashboard
@@ -134,6 +141,7 @@
   - [ ] Connection pooling tuning
 
 ### Real-time Collaboration
+
 - [ ] WebSocket integration
   - [ ] Socket.io setup
   - [ ] Live cursor tracking
@@ -146,6 +154,7 @@
 ## Phase 3: Production Ready
 
 ### Authentication & Authorization
+
 - [ ] User Authentication
   - [ ] JWT implementation
   - [ ] Login/Register endpoints
@@ -159,6 +168,7 @@
   - [ ] Auto-logout on token expiry
 
 ### Sharing & Permissions
+
 - [ ] Map Sharing
   - [ ] Public/private toggle
   - [ ] Share links with expiry
@@ -171,6 +181,7 @@
   - [ ] API authorization middleware
 
 ### Advanced Features
+
 - [ ] Templates System
   - [ ] Pre-built mindmap templates
   - [ ] Template gallery
@@ -189,6 +200,7 @@
   - [ ] Export to outline/document
 
 ### DevOps & Deployment
+
 - [ ] CI/CD Pipeline
   - [ ] GitHub Actions workflow
   - [ ] Automated testing
@@ -208,6 +220,7 @@
   - [ ] Health check endpoints
 
 ### Security
+
 - [ ] Security Audit
   - [ ] OWASP Top 10 review
   - [ ] SQL injection prevention
@@ -239,6 +252,7 @@
 ## Notes
 
 ### Priorities for Next Sprint
+
 1. Complete database migrations and seeding
 2. Implement core API endpoints (Maps + Nodes)
 3. Build Dashboard and Map Editor views
@@ -246,11 +260,13 @@
 5. Add basic error handling and validation
 
 ### Technical Debt
+
 - Consider migrating to full TypeScript (currently mixed JS/TS)
 - Evaluate moving to pnpm for better monorepo support
 - Review and update deprecated dependencies (@koa/router v13 -> v15)
 
 ### Questions/Decisions Needed
+
 - User authentication: JWT vs Session-based?
 - Deployment platform: Vercel, Netlify, Railway, or self-hosted?
 - Database: Continue with Docker PostgreSQL or migrate to cloud (Neon, Supabase)?
