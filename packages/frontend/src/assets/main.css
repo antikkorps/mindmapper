@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-base-100 text-base-content;
+  }
+}
+
+@layer components {
+  .btn-mindmap {
+    @apply btn btn-primary transition-all duration-200 hover:scale-105;
+  }
+
+  .card-mindmap {
+    @apply card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300;
+  }
+}

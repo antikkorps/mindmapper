@@ -1,0 +1,23 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: mindmapper-postgres
+    restart: unless-stopped
+    ports:
+      - '${DB_PORT:-5140}:5432'
+    environment:
+      POSTGRES_USER: ${DB_USER:-mindmapper}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-mindmapper_dev}
+      POSTGRES_DB: ${DB_NAME:-mindmapper_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USER:-mindmapper}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
