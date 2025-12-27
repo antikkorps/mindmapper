@@ -1,6 +1,7 @@
 # MindMapper - Documentation Projet
 
 ## Vue d'ensemble
+
 Application web permettant de créer des cartes mentales (mindmaps) interactives avec sauvegarde en temps réel.
 
 **Objectif**: Créer une solution **State Of The Art (SOTA)** avec les meilleures pratiques de développement.
@@ -8,6 +9,7 @@ Application web permettant de créer des cartes mentales (mindmaps) interactives
 ## Architecture Technique
 
 ### Stack
+
 - **Frontend**: Vue.js + Vue Flow + Pinia + Tailwind CSS + DaisyUI
 - **Backend**: Node.js + Koa.js + JWT Authentication
 - **Database**: PostgreSQL + Sequelize ORM
@@ -16,10 +18,14 @@ Application web permettant de créer des cartes mentales (mindmaps) interactives
 - **Logging**: Winston (production-grade logger with file rotation)
 - **Documentation**: Swagger/OpenAPI 3.0
 - **Security**: Helmet + Rate Limiting + bcrypt
-- **Testing**: Vitest (Frontend) + Jest (Backend) + Playwright (E2E)
+- **Testing**:
+  - ✅ Jest (Backend - 41 tests passing, ESM support with mocked DB)
+  - ⏳ Vitest (Frontend - not yet implemented)
+  - ⏳ Playwright (E2E - not yet implemented)
 - **UI Framework**: Tailwind CSS + DaisyUI
 
 ### Structure Monorepo
+
 ```
 mindmap/
 ├── packages/
@@ -47,9 +53,18 @@ mindmap/
 │   │   ├── logs/               # Winston log files (auto-generated)
 │   │   ├── migrations/         # Sequelize migrations
 │   │   ├── seeders/            # Development data
-│   │   └── tests/
-│   │       ├── unit/
-│   │       └── integration/
+│   │   └── tests/              # Jest test suite (41 tests)
+│   │       ├── config/         # DRY test configuration
+│   │       │   ├── mockDb.js   # Database mocking utilities
+│   │       │   └── testHelpers.js  # Shared test helpers
+│   │       ├── setup.js        # Global test setup (no real DB)
+│   │       ├── unit/           # Unit tests (services, utils)
+│   │       │   ├── services/
+│   │       │   │   └── BaseService.test.js  # 18 tests ✅
+│   │       │   └── utils/
+│   │       │       ├── hash.test.js         # 9 tests ✅
+│   │       │       └── jwt.test.js          # 14 tests ✅
+│   │       └── integration/    # Integration tests (TODO)
 │   └── shared/            # Code partagé (DRY maximal) [FUTURE]
 │       ├── types/         # TypeScript types
 │       ├── constants/
@@ -61,6 +76,7 @@ mindmap/
 ## API Endpoints Reference
 
 ### Authentication (`/api/auth`)
+
 ```
 POST   /api/auth/register    - Register new user (rate: 5/min)
 POST   /api/auth/login       - Login user (rate: 5/min)
@@ -69,6 +85,7 @@ GET    /api/auth/me          - Get current user (protected)
 ```
 
 ### Users (`/api/users`)
+
 ```
 GET    /api/users            - List all users
 GET    /api/users/:id        - Get user by ID
@@ -79,6 +96,7 @@ GET    /api/users/:id/maps   - Get user's maps
 ```
 
 ### Maps (`/api/maps`)
+
 ```
 GET    /api/maps             - List all maps
 GET    /api/maps/:id         - Get map by ID
@@ -90,6 +108,7 @@ DELETE /api/maps/:id         - Delete map (cascade nodes)
 ```
 
 ### Nodes (`/api/nodes`)
+
 ```
 GET    /api/nodes                - List all nodes
 GET    /api/nodes/:id            - Get node by ID
@@ -102,6 +121,7 @@ DELETE /api/nodes/:id            - Delete node (cascade children)
 ```
 
 ### Documentation
+
 ```
 GET    /api-docs             - Swagger UI (interactive)
 GET    /api-docs.json        - OpenAPI 3.0 specification
@@ -110,15 +130,18 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 ## Principes de Développement (SOTA)
 
 ### 1. DRY (Don't Repeat Yourself)
+
 **Objectif**: Éliminer toute duplication de code
 
 #### Frontend
+
 - **Composables Vue**: Logique réutilisable (ex: `useNode`, `useMap`, `useDragDrop`)
 - **Composants génériques**: `BaseButton`, `BaseModal`, `BaseInput`
 - **Services centralisés**: Un seul point d'accès API (`apiClient.js`)
 - **Utilities**: Fonctions helpers partagées (`formatDate`, `debounce`, `throttle`)
 
 #### Backend
+
 - **Services layer**: Séparation business logic / controllers
 - **BaseService pattern**: CRUD générique pour tous les models (DRY)
 - **Middlewares réutilisables**:
@@ -131,11 +154,13 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 - **Utils**: JWT helpers, bcrypt password hashing
 
 #### Shared Package (Future)
+
 - **Types TypeScript**: Partagés entre frontend/backend
 - **Validateurs**: Schémas Zod utilisables partout
 - **Constants**: Valeurs magiques centralisées
 
 #### Production-Grade Features (Backend)
+
 - **Winston Logger**:
   - File rotation (daily)
   - Separate error logs (`logs/error-YYYY-MM-DD.log`)
@@ -165,11 +190,77 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
   - Headers exposed: `Rate-Limit-Remaining`, `Rate-Limit-Reset`, `Rate-Limit-Total`
   - Redis-ready (currently in-memory)
 
-### 2. Testing (Couverture > 80%)
+### 2. Testing (Couverture > 80% - Target)
 
-#### Frontend Tests
+#### ✅ Backend Tests (DRY + Mocked Database)
+
+**Status**: 41 tests passing, 4.78% overall coverage (many files not yet tested)
+
+**Infrastructure DRY**:
+
 ```javascript
-// Unit Tests (Vitest)
+// tests/config/mockDb.js - Centralized database mocking
+export const mockModels = { User, Map, Node }
+export const mockDbSuccess = (model, method, returnValue) => { ... }
+export const mockDbError = (model, method, error) => { ... }
+export const resetAllMocks = () => { ... }
+
+// tests/config/testHelpers.js - Shared utilities
+export const generateMockUser = () => ({ id: uuid(), ... })
+export const generateMockMap = (userId) => ({ ... })
+export const generateMockNode = (mapId) => ({ ... })
+export const createMockContext = () => ({ ... })  // For middleware tests
+export const createMockNext = () => jest.fn()
+```
+
+**Completed Tests**:
+
+```javascript
+// Unit Tests (Jest with ESM support)
+✅ BaseService.test.js (18 tests, 83.33% coverage)
+   - findAll, findById, create, update, delete
+   - count, exists methods
+   - Error handling
+
+✅ hash.test.js (9 tests, 100% coverage)
+   - bcrypt password hashing
+   - Password comparison
+   - Edge cases (unicode, special chars, very long)
+
+✅ jwt.test.js (14 tests, 78.57% coverage)
+   - Token generation (access + refresh)
+   - Token verification
+   - Expiration and claims (iss, aud, iat, exp)
+
+// TODO: Not yet tested
+⏳ NodeService, MapService, UserService
+⏳ Middlewares (auth, zodValidator, rateLimiter)
+⏳ Controllers (authController, mapController, nodeController)
+⏳ Integration tests (supertest)
+```
+
+**Key Features**:
+
+- ✅ **No real database** - All mocked for CI/CD
+- ✅ **Jest ESM support** - `NODE_OPTIONS='--experimental-vm-modules'`
+- ✅ **DRY configuration** - No repetitive setup
+- ✅ **Mock factories** - Generate test data easily
+- ✅ **Documentation** - `TESTING.md` guide
+
+**Running Tests**:
+
+```bash
+npm test                  # All tests
+npm run test:unit         # Unit tests only
+npm run test:integration  # Integration tests only
+npm run test:coverage     # With coverage report
+npm run test:watch        # Watch mode
+```
+
+#### Frontend Tests (TODO)
+
+```javascript
+// Unit Tests (Vitest) - NOT YET IMPLEMENTED
 - Composables: useNode.test.js
 - Stores: nodeStore.test.js
 - Utils: helpers.test.js
@@ -185,19 +276,8 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 - delete-cascade.spec.js
 ```
 
-#### Backend Tests
-```javascript
-// Unit Tests (Jest)
-- Services: nodeService.test.js
-- Utils: validators.test.js
-
-// Integration Tests (Jest + Supertest)
-- API Routes: /nodes endpoints
-- Database: Sequelize models
-- Middlewares: errorHandler.test.js
-```
-
 #### Stratégie TDD (Test-Driven Development)
+
 1. **Red**: Écrire le test qui échoue
 2. **Green**: Implémenter le minimum pour passer
 3. **Refactor**: Améliorer en gardant les tests verts
@@ -205,18 +285,21 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 ### 3. UI/UX Excellence
 
 #### Tailwind CSS
+
 - **Utility-first**: Classes atomiques pour rapidité
 - **Responsive**: Mobile-first design
 - **Dark mode**: Support natif avec `dark:` variants
 - **Custom config**: Palette de couleurs du projet
 
 #### DaisyUI Components
+
 - **Composants pré-stylés**: Boutons, modals, cards, etc.
 - **Thèmes**: Changement de thème en un clic
 - **Accessibilité**: WAI-ARIA compliant
 - **Customisation**: Surcharge des variables CSS
 
 #### Composants UI Réutilisables
+
 ```vue
 <!-- BaseButton.vue (DRY) -->
 <template>
@@ -234,31 +317,37 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 ## Fonctionnalités Principales
 
 ### 1. Gestion des Nœuds
+
 - **Création**: Ajout de nouveaux nœuds dans la carte
 - **Édition**: Modification du texte d'un nœud
 - **Suppression**: Retrait d'un nœud (avec gestion de la cascade récursive)
 - **Déplacement**: Drag-and-drop avec sauvegarde automatique des positions
 
 ### 2. Arborescence
+
 - Système de parenté: un nœud peut avoir plusieurs enfants
 - Relation parent/enfant avec auto-référence en base de données
 - Cascade delete récursif via `NodeService.deleteNodeTree()`
 
 ### 3. Persistence
+
 - Sauvegarde automatique lors de `onNodeDragStop`
 - Stockage des positions (x, y) et du contenu
 - Debounce pour optimiser les requêtes API
 
 ### 4. Navigation
+
 - Zoom: molette de souris / pincement tactile
 - Panning: déplacement dans le canvas
 - Interface fluide et réactive
 
 ### 5. Organisation
+
 - Tableau de bord avec liste des mindmaps
 - Gestion multi-cartes par utilisateur
 
 ### 6. Authentification & Sécurité
+
 - Inscription/Connexion avec JWT
 - Protection des routes sensibles
 - Rate limiting anti brute-force
@@ -268,37 +357,41 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 ## Modèle de Données
 
 ### Table `users`
-| Champ      | Type   | Description                                    |
-|------------|--------|------------------------------------------------|
-| id         | UUID   | Identifiant unique de l'utilisateur            |
-| username   | STRING | Nom d'utilisateur (3-50 chars, alphanum + _)  |
-| email      | STRING | Email unique                                    |
-| password   | STRING | Hash bcrypt du mot de passe                    |
-| createdAt  | DATE   | Date de création                               |
-| updatedAt  | DATE   | Date de dernière modification                  |
+
+| Champ     | Type   | Description                                   |
+| --------- | ------ | --------------------------------------------- |
+| id        | UUID   | Identifiant unique de l'utilisateur           |
+| username  | STRING | Nom d'utilisateur (3-50 chars, alphanum + \_) |
+| email     | STRING | Email unique                                  |
+| password  | STRING | Hash bcrypt du mot de passe                   |
+| createdAt | DATE   | Date de création                              |
+| updatedAt | DATE   | Date de dernière modification                 |
 
 ### Table `maps`
-| Champ      | Type   | Description                                    |
-|------------|--------|------------------------------------------------|
-| id         | UUID   | Identifiant unique de la carte                 |
-| title      | STRING | Titre de la mindmap                            |
-| userId     | FK     | Propriétaire de la carte                       |
-| createdAt  | DATE   | Date de création                               |
-| updatedAt  | DATE   | Date de dernière modification                  |
+
+| Champ     | Type   | Description                    |
+| --------- | ------ | ------------------------------ |
+| id        | UUID   | Identifiant unique de la carte |
+| title     | STRING | Titre de la mindmap            |
+| userId    | FK     | Propriétaire de la carte       |
+| createdAt | DATE   | Date de création               |
+| updatedAt | DATE   | Date de dernière modification  |
 
 ### Table `nodes`
-| Champ      | Type   | Description                                    |
-|------------|--------|------------------------------------------------|
-| id         | UUID   | Identifiant unique du nœud                     |
-| label      | STRING | Texte affiché dans le nœud                     |
-| posX       | FLOAT  | Coordonnée X dans le canvas                    |
-| posY       | FLOAT  | Coordonnée Y dans le canvas                    |
-| parentId   | FK     | Référence vers l'ID du nœud parent (NULL = racine) |
-| mapId      | FK     | Référence vers la carte mentale parente        |
-| createdAt  | DATE   | Date de création                               |
-| updatedAt  | DATE   | Date de dernière modification                  |
+
+| Champ     | Type   | Description                                        |
+| --------- | ------ | -------------------------------------------------- |
+| id        | UUID   | Identifiant unique du nœud                         |
+| label     | STRING | Texte affiché dans le nœud                         |
+| posX      | FLOAT  | Coordonnée X dans le canvas                        |
+| posY      | FLOAT  | Coordonnée Y dans le canvas                        |
+| parentId  | FK     | Référence vers l'ID du nœud parent (NULL = racine) |
+| mapId     | FK     | Référence vers la carte mentale parente            |
+| createdAt | DATE   | Date de création                                   |
+| updatedAt | DATE   | Date de dernière modification                      |
 
 ### Relations
+
 - **Auto-relation**: `nodes.parentId` → `nodes.id`
 - **Map-Nodes**: `nodes.mapId` → `maps.id` (CASCADE on delete)
 - **User-Maps**: `maps.userId` → `users.id`
@@ -306,6 +399,7 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 ## Flux de Travail API
 
 ### Authentication Flow
+
 ```
 1. POST /api/auth/register { username, email, password }
    → Zod validation
@@ -331,6 +425,7 @@ GET    /api-docs.json        - OpenAPI 3.0 specification
 ```
 
 ### A. Chargement d'une Map
+
 ```
 GET /api/maps/:id/nodes
 → Rate limiting check (100 req/min)
@@ -342,6 +437,7 @@ GET /api/maps/:id/nodes
 ```
 
 ### B. Déplacement d'un Nœud
+
 ```
 1. Event onNodeDragStop capture nouvelles coordonnées
 2. PATCH /api/nodes/:id/position { posX, posY }
@@ -354,6 +450,7 @@ GET /api/maps/:id/nodes
 ```
 
 ### C. Suppression
+
 ```
 DELETE /api/nodes/:id
 → Rate limiting check
@@ -366,6 +463,7 @@ DELETE /api/nodes/:id
 ```
 
 ### D. Création
+
 ```
 POST /api/nodes { label, posX, posY, parentId?, mapId }
 → Rate limiting check
@@ -381,6 +479,7 @@ POST /api/nodes { label, posX, posY, parentId?, mapId }
 ```
 
 ### E. Édition
+
 ```
 PATCH /api/nodes/:id/label { label }
 → Rate limiting check
@@ -393,6 +492,7 @@ PATCH /api/nodes/:id/label { label }
 ## Optimisations Techniques
 
 ### Performance Base de Données
+
 - **Index**: Sur `parentId`, `mapId`, `userId`
 - **Requêtes récursives**: CTE pour récupérer l'arborescence complète
 - **Connection pooling**: Configuration Sequelize optimisée
@@ -400,6 +500,7 @@ PATCH /api/nodes/:id/label { label }
 - **Eager loading**: MapService.getMapWithNodes() récupère map + tous les nodes en 1 query
 
 ### Frontend
+
 - **Debouncing**: Limiter les appels API lors du drag (DRY utility)
 - **Optimistic UI**: Mise à jour immédiate avant confirmation serveur
 - **Lazy loading**: Si nombreux nœuds (>1000)
@@ -407,6 +508,7 @@ PATCH /api/nodes/:id/label { label }
 - **Code splitting**: Routes et composants lazy-loaded
 
 ### Code Quality
+
 - **ESLint**: Règles strictes + Prettier
 - **TypeScript**: Type safety partout (à migrer)
 - **Husky**: Pre-commit hooks (lint, test, format)
@@ -416,6 +518,7 @@ PATCH /api/nodes/:id/label { label }
 ## Architecture DRY Examples
 
 ### Composable réutilisable (Frontend)
+
 ```javascript
 // composables/useApiCall.js (DRY)
 export function useApiCall() {
@@ -444,6 +547,7 @@ await execute(nodeService.create, nodeData)
 ```
 
 ### Service Layer (Backend)
+
 ```javascript
 // services/BaseService.js (DRY)
 class BaseService {
@@ -485,7 +589,7 @@ class NodeService extends BaseService {
 
   async deleteNodeTree(nodeId) {
     // Recursive cascade delete
-    const getAllDescendantIds = async (id) => {
+    const getAllDescendantIds = async id => {
       const children = await this.getChildren(id)
       let descendantIds = []
 
@@ -510,6 +614,7 @@ class NodeService extends BaseService {
 ```
 
 ### Zod Validation Schemas
+
 ```javascript
 // validators/node.schema.js
 import { z } from 'zod'
@@ -544,6 +649,7 @@ router.post('/', validateBody(createNodeSchema), nodeController.createNode)
 ```
 
 ### Winston Logging
+
 ```javascript
 // config/logger.js
 import winston from 'winston'
@@ -585,12 +691,14 @@ logger.warn('Rate limit exceeded', { ip: ctx.ip })
 ## Évolutions Futures
 
 ### Phase 2
+
 - **Auto-layout**: Intégration de Dagre pour réorganisation automatique
 - **Export**: PNG/PDF via html-to-image
 - **Thèmes**: Multiples thèmes DaisyUI
 - **Collaboratif**: WebSockets pour édition temps réel multi-utilisateurs
 
 ### Phase 3
+
 - **Partage**: Liens publics/privés vers les cartes
 - **Templates**: Modèles de mindmaps pré-configurés
 - **Historique**: Versioning et undo/redo
@@ -599,11 +707,13 @@ logger.warn('Rate limit exceeded', { ip: ctx.ip })
 ## Commandes de Développement
 
 ### Installation
+
 ```bash
 npm install                    # Install all dependencies
 ```
 
 ### Développement
+
 ```bash
 npm run dev:frontend          # Démarrer Vue.js + Vite (port 5173)
 npm run dev:backend           # Démarrer Koa.js (port 3000)
@@ -611,6 +721,7 @@ npm run dev                   # Démarrer les deux simultanément
 ```
 
 ### Tests
+
 ```bash
 npm run test                  # Tous les tests
 npm run test:unit             # Tests unitaires
@@ -621,6 +732,7 @@ npm run test:watch            # Watch mode
 ```
 
 ### Base de Données
+
 ```bash
 npm run db:migrate            # Exécuter les migrations
 npm run db:seed               # Charger les données de test
@@ -628,6 +740,7 @@ npm run db:reset              # Reset + migrate + seed
 ```
 
 ### API Documentation
+
 ```bash
 # Swagger UI (interactive docs)
 http://localhost:3000/api-docs
@@ -637,6 +750,7 @@ http://localhost:3000/api-docs.json
 ```
 
 ### Quality
+
 ```bash
 npm run lint                  # ESLint check
 npm run lint:fix              # ESLint auto-fix
@@ -647,6 +761,7 @@ npm run type-check            # TypeScript check
 ## Conventions de Code
 
 ### Naming
+
 - **Composants Vue**: PascalCase (ex: `NodeEditor.vue`)
 - **Composables**: `use` prefix (ex: `useNode.js`)
 - **Fichiers JS**: camelCase (ex: `nodeService.js`)
@@ -656,6 +771,7 @@ npm run type-check            # TypeScript check
 - **Types TS**: PascalCase (ex: `NodeType`)
 
 ### Structure des Commits (Conventional Commits)
+
 ```
 type(scope): description
 
@@ -665,6 +781,7 @@ type(scope): description
 ```
 
 Types:
+
 - `feat`: Nouvelle fonctionnalité
 - `fix`: Correction de bug
 - `test`: Ajout/modification de tests
@@ -675,12 +792,14 @@ Types:
 - `chore`: Maintenance
 
 ### Comments
+
 - **Language**: ALL comments MUST be written in English
 - **Functions**: Document complex functions with JSDoc
 - **Inline**: Use inline comments sparingly, only when logic is not self-evident
 - **TODOs**: Format as `// TODO: description` or `// FIXME: description`
 
 Example:
+
 ```javascript
 /**
  * Creates a new node in the database
@@ -701,6 +820,7 @@ async function createNode(nodeData) {
 ```
 
 ### Tests Naming
+
 ```javascript
 // Pattern: describe > it > expect
 describe('NodeService', () => {
@@ -711,8 +831,7 @@ describe('NodeService', () => {
     })
 
     it('should throw error with invalid data', async () => {
-      await expect(nodeService.create(invalidData))
-        .rejects.toThrow()
+      await expect(nodeService.create(invalidData)).rejects.toThrow()
     })
   })
 })
@@ -721,6 +840,7 @@ describe('NodeService', () => {
 ## Métriques de Qualité (SOTA)
 
 ### Objectifs
+
 - **Code Coverage**: > 80%
 - **Test Pass Rate**: 100%
 - **Type Coverage**: 100% (TypeScript strict mode)
@@ -733,6 +853,7 @@ describe('NodeService', () => {
 - **Bundle Size**: Frontend < 500kb (gzipped)
 
 ### Monitoring
+
 - **Winston**: File-based logging with rotation
 - **Sentry**: Error tracking (à implémenter)
 - **Analytics**: User behavior (à implémenter)
@@ -741,6 +862,7 @@ describe('NodeService', () => {
 ## Tailwind CSS Configuration
 
 ### Theme Customization
+
 ```javascript
 // tailwind.config.js
 module.exports = {
@@ -753,19 +875,20 @@ module.exports = {
       },
       animation: {
         'node-pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
-    }
+      },
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {
     themes: ['light', 'dark', 'cupcake', 'cyberpunk'],
-  }
+  },
 }
 ```
 
 ## DaisyUI Components Usage
 
 ### Composants principaux
+
 - **btn**: Boutons avec variants (primary, secondary, ghost, etc.)
 - **card**: Cartes pour afficher les mindmaps
 - **modal**: Dialogues pour édition
@@ -780,6 +903,7 @@ module.exports = {
 ## Références
 
 ### Documentation
+
 - [Vue.js](https://vuejs.org/)
 - [Vue Flow](https://vueflow.dev/)
 - [Pinia](https://pinia.vuejs.org/)
@@ -795,6 +919,7 @@ module.exports = {
 - [Swagger/OpenAPI](https://swagger.io/specification/)
 
 ### Best Practices
+
 - [Vue.js Style Guide](https://vuejs.org/style-guide/)
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Testing Best Practices](https://testingjavascript.com/)

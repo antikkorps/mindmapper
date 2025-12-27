@@ -15,6 +15,7 @@
 - ✅ JWT authentication system
 - ✅ Swagger/OpenAPI documentation
 - ✅ Rate limiting middleware
+- ✅ **Testing infrastructure with DRY + mocked database (41 tests passing)**
 
 ---
 
@@ -80,11 +81,20 @@
 
 ### Testing
 
-- [ ] Backend Tests
-  - [ ] Unit tests for services
-  - [ ] Integration tests for API routes
-  - [ ] Database model tests
-  - [ ] Coverage > 80%
+- ✅ **Backend Tests (DRY + Mocked DB)**
+  - ✅ Jest configuration with ESM support
+  - ✅ DRY test infrastructure (mockDb.js, testHelpers.js)
+  - ✅ Database mocking (no real DB for CI/CD)
+  - ✅ Unit tests for BaseService (18 tests, 83% coverage)
+  - ✅ Unit tests for hash utilities (9 tests, 100% coverage)
+  - ✅ Unit tests for JWT utilities (14 tests, 78% coverage)
+  - ✅ Mock data factories (generateMockUser, generateMockMap, generateMockNode)
+  - ✅ Test documentation (TESTING.md)
+  - [ ] Unit tests for NodeService, MapService, UserService
+  - [ ] Unit tests for middlewares (auth, zodValidator, rateLimiter)
+  - [ ] Unit tests for controllers
+  - [ ] Integration tests for API routes (with supertest)
+  - [ ] Overall coverage > 80% (currently 4.78% - many files untested)
 
 - [ ] Frontend Tests
   - [ ] Unit tests for composables
@@ -98,6 +108,12 @@
 ### Documentation
 
 - ✅ API documentation (Swagger/OpenAPI 3.0 at /api-docs)
+- ✅ Testing documentation (TESTING.md)
+  - ✅ Test setup guide
+  - ✅ Writing tests examples
+  - ✅ DRY patterns and best practices
+  - ✅ Mock utilities documentation
+  - ✅ Troubleshooting guide
 - [ ] Component documentation (props, events)
 - [ ] Setup instructions (README)
 - ✅ Environment variables documentation (.env.example)
@@ -248,7 +264,13 @@
 
 ## Quality Metrics (Target)
 
-- [ ] Code Coverage: > 80%
+- 🔄 **Code Coverage: > 80%** (currently 4.78% overall)
+  - ✅ BaseService: 83.33%
+  - ✅ hash.js: 100%
+  - ✅ jwt.js: 78.57%
+  - ⏳ Controllers: 0% (not tested yet)
+  - ⏳ Middlewares: 0% (not tested yet)
+  - ⏳ Services (Map/Node/User): 0% (not tested yet)
 - [ ] Lighthouse Score: > 90
 - [ ] First Contentful Paint: < 1.5s
 - [ ] Time to Interactive: < 3s
@@ -265,17 +287,22 @@
 
 1. ✅ ~~Complete database migrations and seeding~~
 2. ✅ ~~Implement core API endpoints (Maps + Nodes)~~
-3. Build Dashboard and Map Editor views
-4. Integrate Vue Flow with Pinia stores
-5. ✅ ~~Add basic error handling and validation~~
-6. **NEW:** Implement frontend auth flow (login/register)
-7. **NEW:** Connect frontend to backend API
+3. ✅ ~~Add basic error handling and validation~~
+4. ✅ ~~Implement testing infrastructure with DRY + mocking~~
+5. **NEXT:** Increase test coverage (controllers, middlewares, services)
+6. Build Dashboard and Map Editor views
+7. Integrate Vue Flow with Pinia stores
+8. Implement frontend auth flow (login/register)
+9. Connect frontend to backend API
 
 ### Technical Debt
 
 - Consider migrating to full TypeScript (currently mixed JS/TS)
 - Evaluate moving to pnpm for better monorepo support
 - Review and update deprecated dependencies (@koa/router v13 -> v15)
+- **NEW:** Complete test coverage for all backend code (controllers, middlewares, services)
+- **NEW:** Add integration tests with supertest for full API testing
+- **NEW:** Jest ESM support is experimental - some complex mocking scenarios need workarounds
 
 ### Questions/Decisions Needed
 
