@@ -24,12 +24,19 @@
     "@koa/router": "^13.1.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.3",
     "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
     "koa-helmet": "^7.0.2",
+    "koa-ratelimit": "^6.0.0",
+    "koa-swagger-decorator": "^1.8.7",
+    "koa2-swagger-ui": "^5.12.0",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",

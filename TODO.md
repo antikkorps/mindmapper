@@ -9,6 +9,12 @@
 - ✅ Basic API routes structure
 - ✅ Frontend setup (Vue 3 + Vite + Tailwind + DaisyUI)
 - ✅ Git repository initialized
+- ✅ **Backend MVP completed with production-grade features**
+- ✅ Winston logger with file rotation
+- ✅ Zod validation on all endpoints
+- ✅ JWT authentication system
+- ✅ Swagger/OpenAPI documentation
+- ✅ Rate limiting middleware
 
 ---
 
@@ -16,28 +22,31 @@
 
 ### Backend API
 
-- [ ] Implement database migrations
-  - [ ] Run initial migrations
-  - [ ] Test database schema
-  - [ ] Seed development data
+- ✅ Implement database migrations
+  - ✅ Run initial migrations (users, maps, nodes)
+  - ✅ Test database schema
+  - ✅ Seed development data
 
-- [ ] Complete API Controllers
-  - [ ] Users endpoints (CRUD)
-  - [ ] Maps endpoints (CRUD)
-  - [ ] Nodes endpoints (CRUD + position update)
-  - [ ] Parent-child relationship management
+- ✅ Complete API Controllers
+  - ✅ Users endpoints (CRUD)
+  - ✅ Maps endpoints (CRUD)
+  - ✅ Nodes endpoints (CRUD + position update)
+  - ✅ Parent-child relationship management
+  - ✅ Auth endpoints (register, login, refresh, me)
 
-- [ ] Middleware Implementation
-  - [ ] Error handling middleware
-  - [ ] Request validation middleware
-  - [ ] CORS configuration
-  - [ ] Logging middleware
+- ✅ Middleware Implementation
+  - ✅ Error handling middleware (Winston integrated)
+  - ✅ Request validation middleware (Zod)
+  - ✅ CORS configuration
+  - ✅ Logging middleware (Winston with file rotation)
+  - ✅ Authentication middleware (JWT)
+  - ✅ Rate limiting middleware (5 req/min auth, 100 req/min API)
 
-- [ ] Business Logic (Services)
-  - [ ] NodeService: cascade delete logic
-  - [ ] NodeService: parent reassignment on delete
-  - [ ] MapService: fetch with all nodes
-  - [ ] Optimize queries with eager loading
+- ✅ Business Logic (Services)
+  - ✅ NodeService: cascade delete logic (recursive)
+  - ✅ MapService: fetch with all nodes (eager loading)
+  - ✅ Optimize queries with eager loading
+  - ✅ BaseService pattern (DRY)
 
 ### Frontend UI
 
@@ -88,10 +97,10 @@
 
 ### Documentation
 
-- [ ] API documentation (endpoints, request/response)
+- ✅ API documentation (Swagger/OpenAPI 3.0 at /api-docs)
 - [ ] Component documentation (props, events)
 - [ ] Setup instructions (README)
-- [ ] Environment variables documentation
+- ✅ Environment variables documentation (.env.example)
 
 ---
 
@@ -155,16 +164,17 @@
 
 ### Authentication & Authorization
 
-- [ ] User Authentication
-  - [ ] JWT implementation
-  - [ ] Login/Register endpoints
-  - [ ] Password hashing (bcrypt)
-  - [ ] Refresh token mechanism
+- ✅ User Authentication (Backend)
+  - ✅ JWT implementation (access + refresh tokens)
+  - ✅ Login/Register endpoints
+  - ✅ Password hashing (bcrypt)
+  - ✅ Refresh token mechanism
+  - ✅ Protected routes middleware
 
 - [ ] Frontend Auth
   - [ ] Login/Register forms
   - [ ] Auth guards (router)
-  - [ ] Token storage (httpOnly cookies)
+  - [ ] Token storage (localStorage/cookies)
   - [ ] Auto-logout on token expiry
 
 ### Sharing & Permissions
@@ -222,12 +232,12 @@
 ### Security
 
 - [ ] Security Audit
-  - [ ] OWASP Top 10 review
-  - [ ] SQL injection prevention
-  - [ ] XSS protection
+  - ✅ OWASP Top 10 review (partial)
+  - ✅ SQL injection prevention (Sequelize ORM + parameterized queries)
+  - ✅ XSS protection (Helmet middleware)
   - [ ] CSRF protection
-  - [ ] Rate limiting
-  - [ ] Input sanitization
+  - ✅ Rate limiting (koa-ratelimit: 5 req/min auth, 100 req/min API)
+  - ✅ Input sanitization (Zod validation)
 
 - [ ] Compliance
   - [ ] GDPR compliance (data export/delete)
@@ -253,11 +263,13 @@
 
 ### Priorities for Next Sprint
 
-1. Complete database migrations and seeding
-2. Implement core API endpoints (Maps + Nodes)
+1. ✅ ~~Complete database migrations and seeding~~
+2. ✅ ~~Implement core API endpoints (Maps + Nodes)~~
 3. Build Dashboard and Map Editor views
 4. Integrate Vue Flow with Pinia stores
-5. Add basic error handling and validation
+5. ✅ ~~Add basic error handling and validation~~
+6. **NEW:** Implement frontend auth flow (login/register)
+7. **NEW:** Connect frontend to backend API
 
 ### Technical Debt
 
@@ -267,6 +279,7 @@
 
 ### Questions/Decisions Needed
 
-- User authentication: JWT vs Session-based?
+- ✅ ~~User authentication: JWT vs Session-based?~~ → **Decision: JWT with refresh tokens**
 - Deployment platform: Vercel, Netlify, Railway, or self-hosted?
 - Database: Continue with Docker PostgreSQL or migrate to cloud (Neon, Supabase)?
+- Rate limiting: Migrate to Redis for production? (currently in-memory)
