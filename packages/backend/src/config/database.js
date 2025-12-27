@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize'
 import config from './index.js'
+import logger from './logger.js'
 
 /**
  * Initialize Sequelize connection
@@ -11,7 +12,7 @@ let sequelize
 if (db.url) {
   sequelize = new Sequelize(db.url, {
     dialect: db.dialect,
-    logging: config.env === 'development' ? console.log : false,
+    logging: config.env === 'development' ? (msg) => logger.debug(msg) : false,
     dialectOptions: db.ssl
       ? {
           ssl: {
@@ -26,7 +27,7 @@ if (db.url) {
     host: db.host,
     port: db.port,
     dialect: db.dialect,
-    logging: config.env === 'development' ? console.log : false,
+    logging: config.env === 'development' ? (msg) => logger.debug(msg) : false,
   })
 }
 
@@ -36,9 +37,9 @@ if (db.url) {
 export const testConnection = async () => {
   try {
     await sequelize.authenticate()
-    console.log('Database connection established successfully')
+    logger.info('Database connection established successfully')
   } catch (error) {
-    console.error('Unable to connect to the database:', error)
+    logger.error('Unable to connect to the database:', error)
     throw error
   }
 }

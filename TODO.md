@@ -1,6 +1,7 @@
 # MindMapper - TODO List
 
 ## Current Status
+
 - ✅ Project structure setup (monorepo)
 - ✅ Dependencies installed
 - ✅ PostgreSQL configured (Docker)
@@ -8,36 +9,48 @@
 - ✅ Basic API routes structure
 - ✅ Frontend setup (Vue 3 + Vite + Tailwind + DaisyUI)
 - ✅ Git repository initialized
+- ✅ **Backend MVP completed with production-grade features**
+- ✅ Winston logger with file rotation
+- ✅ Zod validation on all endpoints
+- ✅ JWT authentication system
+- ✅ Swagger/OpenAPI documentation
+- ✅ Rate limiting middleware
+- ✅ **Testing infrastructure with DRY + mocked database (41 tests passing)**
 
 ---
 
 ## Phase 1: MVP (Core Features)
 
 ### Backend API
-- [ ] Implement database migrations
-  - [ ] Run initial migrations
-  - [ ] Test database schema
-  - [ ] Seed development data
 
-- [ ] Complete API Controllers
-  - [ ] Users endpoints (CRUD)
-  - [ ] Maps endpoints (CRUD)
-  - [ ] Nodes endpoints (CRUD + position update)
-  - [ ] Parent-child relationship management
+- ✅ Implement database migrations
+  - ✅ Run initial migrations (users, maps, nodes)
+  - ✅ Test database schema
+  - ✅ Seed development data
 
-- [ ] Middleware Implementation
-  - [ ] Error handling middleware
-  - [ ] Request validation middleware
-  - [ ] CORS configuration
-  - [ ] Logging middleware
+- ✅ Complete API Controllers
+  - ✅ Users endpoints (CRUD)
+  - ✅ Maps endpoints (CRUD)
+  - ✅ Nodes endpoints (CRUD + position update)
+  - ✅ Parent-child relationship management
+  - ✅ Auth endpoints (register, login, refresh, me)
 
-- [ ] Business Logic (Services)
-  - [ ] NodeService: cascade delete logic
-  - [ ] NodeService: parent reassignment on delete
-  - [ ] MapService: fetch with all nodes
-  - [ ] Optimize queries with eager loading
+- ✅ Middleware Implementation
+  - ✅ Error handling middleware (Winston integrated)
+  - ✅ Request validation middleware (Zod)
+  - ✅ CORS configuration
+  - ✅ Logging middleware (Winston with file rotation)
+  - ✅ Authentication middleware (JWT)
+  - ✅ Rate limiting middleware (5 req/min auth, 100 req/min API)
+
+- ✅ Business Logic (Services)
+  - ✅ NodeService: cascade delete logic (recursive)
+  - ✅ MapService: fetch with all nodes (eager loading)
+  - ✅ Optimize queries with eager loading
+  - ✅ BaseService pattern (DRY)
 
 ### Frontend UI
+
 - [ ] Core Components
   - [ ] Dashboard view (list of maps)
   - [ ] Map editor view (Vue Flow canvas)
@@ -67,11 +80,21 @@
   - [ ] Success/error notifications
 
 ### Testing
-- [ ] Backend Tests
-  - [ ] Unit tests for services
-  - [ ] Integration tests for API routes
-  - [ ] Database model tests
-  - [ ] Coverage > 80%
+
+- ✅ **Backend Tests (DRY + Mocked DB)**
+  - ✅ Jest configuration with ESM support
+  - ✅ DRY test infrastructure (mockDb.js, testHelpers.js)
+  - ✅ Database mocking (no real DB for CI/CD)
+  - ✅ Unit tests for BaseService (18 tests, 83% coverage)
+  - ✅ Unit tests for hash utilities (9 tests, 100% coverage)
+  - ✅ Unit tests for JWT utilities (14 tests, 78% coverage)
+  - ✅ Mock data factories (generateMockUser, generateMockMap, generateMockNode)
+  - ✅ Test documentation (TESTING.md)
+  - [ ] Unit tests for NodeService, MapService, UserService
+  - [ ] Unit tests for middlewares (auth, zodValidator, rateLimiter)
+  - [ ] Unit tests for controllers
+  - [ ] Integration tests for API routes (with supertest)
+  - [ ] Overall coverage > 80% (currently 4.78% - many files untested)
 
 - [ ] Frontend Tests
   - [ ] Unit tests for composables
@@ -83,16 +106,24 @@
     - [ ] Drag and drop nodes
 
 ### Documentation
-- [ ] API documentation (endpoints, request/response)
+
+- ✅ API documentation (Swagger/OpenAPI 3.0 at /api-docs)
+- ✅ Testing documentation (TESTING.md)
+  - ✅ Test setup guide
+  - ✅ Writing tests examples
+  - ✅ DRY patterns and best practices
+  - ✅ Mock utilities documentation
+  - ✅ Troubleshooting guide
 - [ ] Component documentation (props, events)
 - [ ] Setup instructions (README)
-- [ ] Environment variables documentation
+- ✅ Environment variables documentation (.env.example)
 
 ---
 
 ## Phase 2: Enhanced Features
 
 ### UI/UX Improvements
+
 - [ ] Auto-layout with Dagre
   - [ ] Install @vue-flow/dagre
   - [ ] Implement auto-arrange algorithm
@@ -121,6 +152,7 @@
   - [ ] Save (Ctrl+S)
 
 ### Performance Optimization
+
 - [ ] Frontend
   - [ ] Lazy loading for large mindmaps (>1000 nodes)
   - [ ] Virtual scrolling for dashboard
@@ -134,6 +166,7 @@
   - [ ] Connection pooling tuning
 
 ### Real-time Collaboration
+
 - [ ] WebSocket integration
   - [ ] Socket.io setup
   - [ ] Live cursor tracking
@@ -146,19 +179,22 @@
 ## Phase 3: Production Ready
 
 ### Authentication & Authorization
-- [ ] User Authentication
-  - [ ] JWT implementation
-  - [ ] Login/Register endpoints
-  - [ ] Password hashing (bcrypt)
-  - [ ] Refresh token mechanism
+
+- ✅ User Authentication (Backend)
+  - ✅ JWT implementation (access + refresh tokens)
+  - ✅ Login/Register endpoints
+  - ✅ Password hashing (bcrypt)
+  - ✅ Refresh token mechanism
+  - ✅ Protected routes middleware
 
 - [ ] Frontend Auth
   - [ ] Login/Register forms
   - [ ] Auth guards (router)
-  - [ ] Token storage (httpOnly cookies)
+  - [ ] Token storage (localStorage/cookies)
   - [ ] Auto-logout on token expiry
 
 ### Sharing & Permissions
+
 - [ ] Map Sharing
   - [ ] Public/private toggle
   - [ ] Share links with expiry
@@ -171,6 +207,7 @@
   - [ ] API authorization middleware
 
 ### Advanced Features
+
 - [ ] Templates System
   - [ ] Pre-built mindmap templates
   - [ ] Template gallery
@@ -189,6 +226,7 @@
   - [ ] Export to outline/document
 
 ### DevOps & Deployment
+
 - [ ] CI/CD Pipeline
   - [ ] GitHub Actions workflow
   - [ ] Automated testing
@@ -208,13 +246,14 @@
   - [ ] Health check endpoints
 
 ### Security
+
 - [ ] Security Audit
-  - [ ] OWASP Top 10 review
-  - [ ] SQL injection prevention
-  - [ ] XSS protection
+  - ✅ OWASP Top 10 review (partial)
+  - ✅ SQL injection prevention (Sequelize ORM + parameterized queries)
+  - ✅ XSS protection (Helmet middleware)
   - [ ] CSRF protection
-  - [ ] Rate limiting
-  - [ ] Input sanitization
+  - ✅ Rate limiting (koa-ratelimit: 5 req/min auth, 100 req/min API)
+  - ✅ Input sanitization (Zod validation)
 
 - [ ] Compliance
   - [ ] GDPR compliance (data export/delete)
@@ -225,7 +264,13 @@
 
 ## Quality Metrics (Target)
 
-- [ ] Code Coverage: > 80%
+- 🔄 **Code Coverage: > 80%** (currently 4.78% overall)
+  - ✅ BaseService: 83.33%
+  - ✅ hash.js: 100%
+  - ✅ jwt.js: 78.57%
+  - ⏳ Controllers: 0% (not tested yet)
+  - ⏳ Middlewares: 0% (not tested yet)
+  - ⏳ Services (Map/Node/User): 0% (not tested yet)
 - [ ] Lighthouse Score: > 90
 - [ ] First Contentful Paint: < 1.5s
 - [ ] Time to Interactive: < 3s
@@ -239,18 +284,29 @@
 ## Notes
 
 ### Priorities for Next Sprint
-1. Complete database migrations and seeding
-2. Implement core API endpoints (Maps + Nodes)
-3. Build Dashboard and Map Editor views
-4. Integrate Vue Flow with Pinia stores
-5. Add basic error handling and validation
+
+1. ✅ ~~Complete database migrations and seeding~~
+2. ✅ ~~Implement core API endpoints (Maps + Nodes)~~
+3. ✅ ~~Add basic error handling and validation~~
+4. ✅ ~~Implement testing infrastructure with DRY + mocking~~
+5. **NEXT:** Increase test coverage (controllers, middlewares, services)
+6. Build Dashboard and Map Editor views
+7. Integrate Vue Flow with Pinia stores
+8. Implement frontend auth flow (login/register)
+9. Connect frontend to backend API
 
 ### Technical Debt
+
 - Consider migrating to full TypeScript (currently mixed JS/TS)
 - Evaluate moving to pnpm for better monorepo support
 - Review and update deprecated dependencies (@koa/router v13 -> v15)
+- **NEW:** Complete test coverage for all backend code (controllers, middlewares, services)
+- **NEW:** Add integration tests with supertest for full API testing
+- **NEW:** Jest ESM support is experimental - some complex mocking scenarios need workarounds
 
 ### Questions/Decisions Needed
-- User authentication: JWT vs Session-based?
+
+- ✅ ~~User authentication: JWT vs Session-based?~~ → **Decision: JWT with refresh tokens**
 - Deployment platform: Vercel, Netlify, Railway, or self-hosted?
 - Database: Continue with Docker PostgreSQL or migrate to cloud (Neon, Supabase)?
+- Rate limiting: Migrate to Redis for production? (currently in-memory)
