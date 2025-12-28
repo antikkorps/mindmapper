@@ -16,6 +16,38 @@
 - ✅ Swagger/OpenAPI documentation
 - ✅ Rate limiting middleware
 - ✅ **Testing infrastructure with DRY + mocked database (41 tests passing)**
+- ✅ **Frontend MVP 100% complete** ✨
+- ✅ Dashboard + Map Editor fully functional
+- ✅ Toast notification system (DaisyUI + Lucide icons)
+- ✅ Theme switcher (6 DaisyUI themes)
+- ✅ Debounced position updates (300ms)
+- ✅ DRY composables (useToast, useApiCall)
+- ✅ **Authentication system (Login/Register/Guards)**
+- ✅ Node editor modal (double-click)
+- ✅ Context menu (right-click: edit, delete, duplicate, add child)
+- ✅ Lucide icons integration (consistent design)
+- ✅ **Phase 2A: DiceBear avatars + Keyboard shortcuts** ✨
+- ✅ **Phase 2C: Dagre auto-layout (4 presets)** ✨
+- ✅ **Bug fixes & Polish** ✨
+  - ✅ Fixed UUID validation in seeders (real UUIDs)
+  - ✅ Fixed user-specific maps filtering (`/maps/user/:userId`)
+  - ✅ Fixed nodes data extraction (`response.data.nodes`)
+  - ✅ Added PATCH route for `/nodes/:id`
+  - ✅ Fixed context menu positioning (fixed instead of absolute)
+  - ✅ Added `@connect` event for drag-and-drop connections
+  - ✅ Fixed duplicate node edge creation
+  - ✅ Toast position moved to bottom-right
+  - ✅ Fixed API response unwrapping (`.data` extraction from backend)
+  - ✅ Fixed route ordering (specific routes before generic /:id)
+  - ✅ Added viewport overflow prevention for context menu
+- ✅ **Sponsor/Support Integration** ✨
+  - ✅ Footer component with minimal design
+  - ✅ SponsorModal with Buy Me a Coffee/Ko-fi/GitHub Sponsors
+  - ✅ Integrated into HomeView only
+- ✅ **Home Page Redesign with DaisyUI** ✨
+  - ✅ Modern landing page with hero, mockups, stats, features
+  - ✅ 6 feature cards, 3-step guide, CTAs
+  - ✅ Social proof badges and responsive design
 
 ---
 
@@ -51,33 +83,41 @@
 
 ### Frontend UI
 
-- [ ] Core Components
-  - [ ] Dashboard view (list of maps)
-  - [ ] Map editor view (Vue Flow canvas)
-  - [ ] Node editor modal/inline
-  - [ ] Navigation bar
-  - [ ] Map card component
+- ✅ **Core Components**
+  - ✅ Dashboard view (list of maps) with loading/empty states
+  - ✅ Map editor view (Vue Flow canvas)
+  - ✅ Node editor modal (double-click to edit label)
+  - ✅ Navigation bar with theme switcher (6 DaisyUI themes)
+  - ✅ Map card component (rename, delete, duplicate actions)
+  - ✅ Toast notification system (success, error, warning, info)
+  - ✅ Node context menu (right-click actions)
 
-- [ ] Vue Flow Integration
-  - [ ] Configure Vue Flow properly
-  - [ ] Implement node dragging
-  - [ ] Implement edge creation (parent-child)
+- ✅ **Vue Flow Integration**
+  - ✅ Configure Vue Flow properly
+  - ✅ Implement node dragging with debounced save (300ms)
+  - ✅ Implement edge creation (parent-child relationships)
   - [ ] Custom node styles with DaisyUI
-  - [ ] Background pattern
-  - [ ] Controls (zoom, fit view)
-  - [ ] Minimap
+  - ✅ Background pattern (dot grid)
+  - ✅ Controls (zoom, fit view, pan)
+  - ✅ Minimap
 
-- [ ] State Management (Pinia)
-  - [ ] Maps store (CRUD operations)
-  - [ ] Nodes store (CRUD + position updates)
-  - [ ] Debounce position updates (300ms)
-  - [ ] Optimistic UI updates
+- ✅ **State Management (Pinia)**
+  - ✅ Maps store (CRUD operations)
+  - ✅ Nodes store (CRUD + position updates)
+  - ✅ Debounce position updates (300ms)
+  - ✅ Optimistic UI updates
 
-- [ ] API Integration
-  - [ ] Create API client service
-  - [ ] Error handling
-  - [ ] Loading states
-  - [ ] Success/error notifications
+- ✅ **API Integration**
+  - ✅ Create API client service (fetch-based with auth headers)
+  - ✅ Error handling with toast notifications
+  - ✅ Loading states (skeletons, spinners, disabled buttons)
+  - ✅ Success/error notifications
+
+- ✅ **DRY Utilities & Composables**
+  - ✅ `useToast` composable (global toast instance)
+  - ✅ `useApiCall` composable (loading, error states)
+  - ✅ `debounce` utility (300ms for position updates)
+  - ✅ `throttle` utility (rate limiting)
 
 ### Testing
 
@@ -124,10 +164,59 @@
 
 ### UI/UX Improvements
 
-- [ ] Auto-layout with Dagre
-  - [ ] Install @vue-flow/dagre
-  - [ ] Implement auto-arrange algorithm
-  - [ ] Smooth transitions
+- ✅ **DiceBear Avatar Integration**
+  - ✅ Install @dicebear/core and @dicebear/collection
+  - ✅ Replace user initials with generated avatars
+  - ✅ Avatar component (avataaars, bottts, lorelei, personas)
+  - ✅ Integrated in Navbar
+  - [ ] Avatar customization in user profile (future)
+
+- [ ] **Internationalization (i18n)** 🎯 NEXT
+  - [ ] Install vue-i18n
+  - [ ] Setup language files (en, fr)
+  - [ ] Extract all hardcoded strings to i18n keys
+  - [ ] Language switcher in Navbar dropdown
+  - [ ] Persist language preference (localStorage)
+  - [ ] Date/time localization
+  - [ ] i18n for toast notifications
+  - [ ] i18n for keyboard shortcuts modal
+
+- ✅ **Sponsor/Support Integration** 💰
+  - ✅ Add "Support this project" button in Footer (HomeView only)
+  - ✅ Create sponsor modal with Buy Me a Coffee, Ko-fi, GitHub Sponsors
+  - ✅ Beautiful DaisyUI modal with brand colors
+  - ✅ Minimal footer design (GitHub • Sponsor • Copyright)
+  - ✅ "Star on GitHub" alternative option
+  - ✅ Footer component created and integrated
+  - ✅ SponsorModal with official brand colors (#FFDD00, #FF5E5B, #EA4AAA)
+  - [ ] Add sponsor info to README
+  - [ ] Update URLs with real sponsor links (TODO comments in HomeView.vue)
+
+- ✅ **Home Page Redesign with DaisyUI** ✨
+  - ✅ Hero section with gradient (primary to secondary)
+  - ✅ Mockup-window component with fake stats (Ideas, Maps, Nodes)
+  - ✅ "Open Source" badge
+  - ✅ CTA buttons (Start Free, Sign In) with Lucide icons
+  - ✅ Social proof badges (Open Source, Free Forever, Privacy First)
+  - ✅ Stats section (Unlimited nodes, Auto-save, 6+ themes)
+  - ✅ Features section (6 cards: Hierarchical Structure, Auto-Layout, Keyboard Shortcuts, Auto-Save, User Avatars, Themes)
+  - ✅ "How It Works" steps component (3 steps: Create Account, Create Map, Collaborate)
+  - ✅ Final CTA section with gradient
+  - ✅ Footer and SponsorModal integration
+  - ✅ Responsive design (mobile-first)
+
+- [ ] **Real-time Collaboration Preview** 🚀
+  - [ ] Figma-style live cursors (with user avatar/color)
+  - [ ] "X users online" indicator
+  - [ ] See this full implementation in Phase 2 → Real-time Collaboration section
+
+- ✅ **Auto-layout with Dagre**
+  - ✅ Install dagre library
+  - ✅ Implement auto-arrange algorithm (TB, LR, Compact, Spacious presets)
+  - ✅ Batch position update to backend
+  - ✅ Auto fit-view after layout
+  - ✅ DRY utility: applyAutoLayout()
+  - [ ] Layout animation/transitions (future)
 
 - [ ] Export functionality
   - [ ] Export as PNG (html-to-image)
@@ -135,21 +224,28 @@
   - [ ] Export as JSON
 
 - [ ] Theme System
-  - [ ] Theme selector component
-  - [ ] Persist theme preference (localStorage)
+  - ✅ Theme selector component
+  - ✅ Persist theme preference (localStorage)
   - [ ] Custom mindmap color schemes
+  - [ ] Per-map theme settings
 
 - [ ] Advanced Node Features
   - [ ] Rich text editing (markdown support)
   - [ ] Node icons/emojis
   - [ ] Node colors
   - [ ] Node sizing options
+  - [ ] Custom node shapes (rectangle, circle, diamond)
 
-- [ ] Keyboard Shortcuts
-  - [ ] Add node (Ctrl+N)
-  - [ ] Delete node (Delete)
-  - [ ] Undo/Redo (Ctrl+Z/Ctrl+Y)
-  - [ ] Save (Ctrl+S)
+- ✅ **Keyboard Shortcuts**
+  - ✅ Add node (Ctrl+N)
+  - ✅ Close modal/menu (Esc)
+  - ✅ Help modal (Shift+?, F1)
+  - ✅ DRY composable: useKeyboardShortcuts()
+  - ✅ KeyboardShortcutsModal component (beautiful modal with all shortcuts)
+  - [ ] Delete node (Delete) - needs node selection first
+  - [ ] Undo/Redo (Ctrl+Z/Ctrl+Y) - needs history stack
+  - [ ] Save (Ctrl+S) - auto-save already implemented
+  - [ ] Zoom shortcuts (Ctrl+0, Ctrl++, Ctrl+-)
 
 ### Performance Optimization
 
@@ -165,14 +261,41 @@
   - [ ] Database indexing review
   - [ ] Connection pooling tuning
 
-### Real-time Collaboration
+### Real-time Collaboration 🎯 HIGH PRIORITY
 
-- [ ] WebSocket integration
-  - [ ] Socket.io setup
-  - [ ] Live cursor tracking
-  - [ ] Real-time node updates
-  - [ ] Conflict resolution
-  - [ ] User presence indicators
+- [ ] **WebSocket integration**
+  - [ ] Socket.io setup (backend + frontend)
+  - [ ] Room management (per map ID)
+  - [ ] User join/leave events
+  - [ ] Heartbeat/ping-pong mechanism
+
+- [ ] **Live Cursor Tracking (Figma-style)** ✨
+  - [ ] Custom cursor component with user avatar/name
+  - [ ] Smooth cursor animation (CSS transforms)
+  - [ ] Different colors per user
+  - [ ] Cursor position broadcasting via WebSocket
+  - [ ] Throttle cursor updates (60fps max)
+  - [ ] Hide cursor when user is inactive (5s timeout)
+  - [ ] Cursor trails/animations (optional)
+
+- [ ] **Real-time Node Updates**
+  - [ ] Broadcast node creation/deletion/updates
+  - [ ] Optimistic UI updates
+  - [ ] Conflict resolution strategy (last-write-wins or OT)
+  - [ ] Show "user X is editing" indicator on nodes
+  - [ ] Lock mechanism for node editing (optional)
+
+- [ ] **User Presence Indicators**
+  - [ ] Active users list in Navbar
+  - [ ] User avatars with online status
+  - [ ] "X users viewing this map" counter
+  - [ ] User activity status (viewing, editing, idle)
+
+- [ ] **Collaborative Features**
+  - [ ] Chat sidebar (optional)
+  - [ ] Comments on nodes (optional)
+  - [ ] Activity feed/history
+  - [ ] Permissions (view-only, edit, admin)
 
 ---
 
@@ -187,11 +310,15 @@
   - ✅ Refresh token mechanism
   - ✅ Protected routes middleware
 
-- [ ] Frontend Auth
-  - [ ] Login/Register forms
-  - [ ] Auth guards (router)
-  - [ ] Token storage (localStorage/cookies)
-  - [ ] Auto-logout on token expiry
+- ✅ **Frontend Auth**
+  - ✅ Login/Register forms (DaisyUI + validation)
+  - ✅ Auth guards (router beforeEach)
+  - ✅ Token storage (localStorage: access + refresh)
+  - ✅ Auto-logout on token expiry
+  - ✅ Auth store (Pinia) with initializeAuth
+  - ✅ Protected routes (/maps, /maps/:id)
+  - ✅ Guest routes (/login, /register)
+  - ✅ Navbar integration (user menu, logout)
 
 ### Sharing & Permissions
 
@@ -289,11 +416,23 @@
 2. ✅ ~~Implement core API endpoints (Maps + Nodes)~~
 3. ✅ ~~Add basic error handling and validation~~
 4. ✅ ~~Implement testing infrastructure with DRY + mocking~~
-5. **NEXT:** Increase test coverage (controllers, middlewares, services)
-6. Build Dashboard and Map Editor views
-7. Integrate Vue Flow with Pinia stores
-8. Implement frontend auth flow (login/register)
-9. Connect frontend to backend API
+5. ✅ ~~Build Dashboard and Map Editor views~~
+6. ✅ ~~Integrate Vue Flow with Pinia stores~~
+7. ✅ ~~Connect frontend to backend API~~
+8. ✅ ~~Complete frontend MVP (Node editor modal, delete node UI)~~
+9. ✅ ~~Implement frontend auth flow (login/register/guards)~~
+10. ✅ ~~Phase 2A: DiceBear avatars + Keyboard shortcuts~~
+11. ✅ ~~Phase 2C: Dagre auto-layout~~
+12. ✅ ~~Bug fixes & polish (UUIDs, connections, positioning)~~
+13. ✅ ~~Sponsor integration (Footer + SponsorModal)~~
+14. ✅ ~~Home page redesign with DaisyUI~~
+15. **NEXT OPTIONS:**
+    - **Option A:** Phase 2B - i18n (vue-i18n, FR/EN translations)
+    - **Option B:** Backend testing (increase coverage to 80%+)
+    - **Option C:** Export features (PNG, PDF, JSON)
+    - **Option D:** Advanced node features (colors, icons, rich text)
+    - **Option E:** Custom node styles with DaisyUI
+    - **Option F:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
 
 ### Technical Debt
 

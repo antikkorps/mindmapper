@@ -35,13 +35,29 @@ class ApiClient {
       // Handle non-2xx responses
       if (!response.ok) {
         const error = await response.json().catch(() => ({}))
-        const message = error.message || `HTTP Error ${response.status}`
+
+        // Format detailed error message
+        let message = error.error?.message || error.message || `HTTP Error ${response.status}`
+
+        // Add validation details if present
+        if (error.error?.details) {
+          const details = error.error.details
+            .map(d => `${d.field}: ${d.message}`)
+            .join(', ')
+          message = `${message} (${details})`
+        }
 
         // Handle 401 Unauthorized
         if (response.status === 401) {
           localStorage.removeItem('auth_token')
           window.location.href = '/login'
         }
+
+        console.error('API Error:', {
+          status: response.status,
+          url: response.url,
+          error: error
+        })
 
         throw new Error(message)
       }

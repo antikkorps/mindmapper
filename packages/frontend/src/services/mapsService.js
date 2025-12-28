@@ -1,21 +1,28 @@
 import apiClient from './apiClient'
 
-export const getMaps = async () => {
-  return apiClient.get('/maps')
+export const getMaps = async (userId) => {
+  // If userId provided, get user-specific maps, otherwise get all
+  const endpoint = userId ? `/maps/user/${userId}` : '/maps'
+  const response = await apiClient.get(endpoint)
+  return response.data
 }
 
 export const getMapById = async id => {
-  return apiClient.get(`/maps/${id}`)
+  const response = await apiClient.get(`/maps/${id}`)
+  return response.data
 }
 
 export const createMap = async data => {
-  return apiClient.post('/maps', data)
+  const response = await apiClient.post('/maps', data)
+  return response.data
 }
 
 export const updateMap = async (id, data) => {
-  return apiClient.patch(`/maps/${id}`, data)
+  const response = await apiClient.patch(`/maps/${id}`, data)
+  return response.data
 }
 
 export const deleteMap = async id => {
-  return apiClient.delete(`/maps/${id}`)
+  const response = await apiClient.delete(`/maps/${id}`)
+  return response.data
 }

@@ -8,7 +8,7 @@ module.exports = {
 
     await queryInterface.bulkInsert('users', [
       {
-        id: '00000000-0000-0000-0000-000000000001',
+        id: '550e8400-e29b-41d4-a716-446655440001',
         username: 'demo',
         email: 'demo@mindmap.app',
         password: hashedPassword,
@@ -16,7 +16,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: '00000000-0000-0000-0000-000000000002',
+        id: '550e8400-e29b-41d4-a716-446655440002',
         username: 'testuser',
         email: 'test@mindmap.app',
         password: hashedPassword,

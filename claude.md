@@ -880,7 +880,7 @@ module.exports = {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['light', 'dark', 'cupcake', 'cyberpunk'],
+    themes: ['light', 'dark', 'cupcake', 'retro'],
   },
 }
 ```
