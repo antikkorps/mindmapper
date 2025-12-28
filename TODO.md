@@ -28,7 +28,26 @@
 - ✅ Lucide icons integration (consistent design)
 - ✅ **Phase 2A: DiceBear avatars + Keyboard shortcuts** ✨
 - ✅ **Phase 2C: Dagre auto-layout (4 presets)** ✨
-- ✅ API response unwrapping (`.data` extraction from backend)
+- ✅ **Bug fixes & Polish** ✨
+  - ✅ Fixed UUID validation in seeders (real UUIDs)
+  - ✅ Fixed user-specific maps filtering (`/maps/user/:userId`)
+  - ✅ Fixed nodes data extraction (`response.data.nodes`)
+  - ✅ Added PATCH route for `/nodes/:id`
+  - ✅ Fixed context menu positioning (fixed instead of absolute)
+  - ✅ Added `@connect` event for drag-and-drop connections
+  - ✅ Fixed duplicate node edge creation
+  - ✅ Toast position moved to bottom-right
+  - ✅ Fixed API response unwrapping (`.data` extraction from backend)
+  - ✅ Fixed route ordering (specific routes before generic /:id)
+  - ✅ Added viewport overflow prevention for context menu
+- ✅ **Sponsor/Support Integration** ✨
+  - ✅ Footer component with minimal design
+  - ✅ SponsorModal with Buy Me a Coffee/Ko-fi/GitHub Sponsors
+  - ✅ Integrated into HomeView only
+- ✅ **Home Page Redesign with DaisyUI** ✨
+  - ✅ Modern landing page with hero, mockups, stats, features
+  - ✅ 6 feature cards, 3-step guide, CTAs
+  - ✅ Social proof badges and responsive design
 
 ---
 
@@ -152,13 +171,44 @@
   - ✅ Integrated in Navbar
   - [ ] Avatar customization in user profile (future)
 
-- [ ] **Internationalization (i18n)**
+- [ ] **Internationalization (i18n)** 🎯 NEXT
   - [ ] Install vue-i18n
   - [ ] Setup language files (en, fr)
   - [ ] Extract all hardcoded strings to i18n keys
-  - [ ] Language switcher in settings
+  - [ ] Language switcher in Navbar dropdown
   - [ ] Persist language preference (localStorage)
   - [ ] Date/time localization
+  - [ ] i18n for toast notifications
+  - [ ] i18n for keyboard shortcuts modal
+
+- ✅ **Sponsor/Support Integration** 💰
+  - ✅ Add "Support this project" button in Footer (HomeView only)
+  - ✅ Create sponsor modal with Buy Me a Coffee, Ko-fi, GitHub Sponsors
+  - ✅ Beautiful DaisyUI modal with brand colors
+  - ✅ Minimal footer design (GitHub • Sponsor • Copyright)
+  - ✅ "Star on GitHub" alternative option
+  - ✅ Footer component created and integrated
+  - ✅ SponsorModal with official brand colors (#FFDD00, #FF5E5B, #EA4AAA)
+  - [ ] Add sponsor info to README
+  - [ ] Update URLs with real sponsor links (TODO comments in HomeView.vue)
+
+- ✅ **Home Page Redesign with DaisyUI** ✨
+  - ✅ Hero section with gradient (primary to secondary)
+  - ✅ Mockup-window component with fake stats (Ideas, Maps, Nodes)
+  - ✅ "Open Source" badge
+  - ✅ CTA buttons (Start Free, Sign In) with Lucide icons
+  - ✅ Social proof badges (Open Source, Free Forever, Privacy First)
+  - ✅ Stats section (Unlimited nodes, Auto-save, 6+ themes)
+  - ✅ Features section (6 cards: Hierarchical Structure, Auto-Layout, Keyboard Shortcuts, Auto-Save, User Avatars, Themes)
+  - ✅ "How It Works" steps component (3 steps: Create Account, Create Map, Collaborate)
+  - ✅ Final CTA section with gradient
+  - ✅ Footer and SponsorModal integration
+  - ✅ Responsive design (mobile-first)
+
+- [ ] **Real-time Collaboration Preview** 🚀
+  - [ ] Figma-style live cursors (with user avatar/color)
+  - [ ] "X users online" indicator
+  - [ ] See this full implementation in Phase 2 → Real-time Collaboration section
 
 - ✅ **Auto-layout with Dagre**
   - ✅ Install dagre library
@@ -211,14 +261,41 @@
   - [ ] Database indexing review
   - [ ] Connection pooling tuning
 
-### Real-time Collaboration
+### Real-time Collaboration 🎯 HIGH PRIORITY
 
-- [ ] WebSocket integration
-  - [ ] Socket.io setup
-  - [ ] Live cursor tracking
-  - [ ] Real-time node updates
-  - [ ] Conflict resolution
-  - [ ] User presence indicators
+- [ ] **WebSocket integration**
+  - [ ] Socket.io setup (backend + frontend)
+  - [ ] Room management (per map ID)
+  - [ ] User join/leave events
+  - [ ] Heartbeat/ping-pong mechanism
+
+- [ ] **Live Cursor Tracking (Figma-style)** ✨
+  - [ ] Custom cursor component with user avatar/name
+  - [ ] Smooth cursor animation (CSS transforms)
+  - [ ] Different colors per user
+  - [ ] Cursor position broadcasting via WebSocket
+  - [ ] Throttle cursor updates (60fps max)
+  - [ ] Hide cursor when user is inactive (5s timeout)
+  - [ ] Cursor trails/animations (optional)
+
+- [ ] **Real-time Node Updates**
+  - [ ] Broadcast node creation/deletion/updates
+  - [ ] Optimistic UI updates
+  - [ ] Conflict resolution strategy (last-write-wins or OT)
+  - [ ] Show "user X is editing" indicator on nodes
+  - [ ] Lock mechanism for node editing (optional)
+
+- [ ] **User Presence Indicators**
+  - [ ] Active users list in Navbar
+  - [ ] User avatars with online status
+  - [ ] "X users viewing this map" counter
+  - [ ] User activity status (viewing, editing, idle)
+
+- [ ] **Collaborative Features**
+  - [ ] Chat sidebar (optional)
+  - [ ] Comments on nodes (optional)
+  - [ ] Activity feed/history
+  - [ ] Permissions (view-only, edit, admin)
 
 ---
 
@@ -346,12 +423,16 @@
 9. ✅ ~~Implement frontend auth flow (login/register/guards)~~
 10. ✅ ~~Phase 2A: DiceBear avatars + Keyboard shortcuts~~
 11. ✅ ~~Phase 2C: Dagre auto-layout~~
-12. **NEXT OPTIONS:**
+12. ✅ ~~Bug fixes & polish (UUIDs, connections, positioning)~~
+13. ✅ ~~Sponsor integration (Footer + SponsorModal)~~
+14. ✅ ~~Home page redesign with DaisyUI~~
+15. **NEXT OPTIONS:**
     - **Option A:** Phase 2B - i18n (vue-i18n, FR/EN translations)
     - **Option B:** Backend testing (increase coverage to 80%+)
     - **Option C:** Export features (PNG, PDF, JSON)
     - **Option D:** Advanced node features (colors, icons, rich text)
     - **Option E:** Custom node styles with DaisyUI
+    - **Option F:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
 
 ### Technical Debt
 

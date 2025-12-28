@@ -55,11 +55,7 @@
       </div>
 
       <!-- Login button if not authenticated -->
-      <router-link
-        v-else
-        to="/login"
-        class="btn btn-primary btn-sm gap-2"
-      >
+      <router-link v-else to="/login" class="btn btn-primary btn-sm gap-2">
         <LogIn :size="16" />
         Login
       </router-link>
@@ -68,17 +64,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
-import { useToast } from '@/composables/useToast'
-import { Palette, LogIn } from 'lucide-vue-next'
 import Avatar from '@/components/Avatar.vue'
+import { useToast } from '@/composables/useToast'
+import { useAuthStore } from '@/stores/auth'
+import { LogIn, Palette } from 'lucide-vue-next'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const authStore = useAuthStore()
 
-const themes = ['light', 'dark', 'cupcake', 'cyberpunk', 'forest', 'sunset']
+const themes = ['light', 'dark', 'cupcake', 'retro', 'forest', 'wireframe']
 const currentTheme = ref('light')
 
 onMounted(() => {

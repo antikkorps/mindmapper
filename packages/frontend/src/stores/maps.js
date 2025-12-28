@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import * as mapsService from '@/services/mapsService'
+import { useAuthStore } from './auth'
 
 export const useMapsStore = defineStore('maps', () => {
+  const authStore = useAuthStore()
   const maps = ref([])
   const currentMap = ref(null)
   const loading = ref(false)
@@ -12,7 +14,8 @@ export const useMapsStore = defineStore('maps', () => {
     loading.value = true
     error.value = null
     try {
-      maps.value = await mapsService.getMaps()
+      // Fetch only maps for the current user
+      maps.value = await mapsService.getMaps(authStore.user?.id)
     } catch (e) {
       error.value = e.message
       throw e
@@ -39,7 +42,10 @@ export const useMapsStore = defineStore('maps', () => {
     loading.value = true
     error.value = null
     try {
-      const newMap = await mapsService.createMap({ title })
+      const newMap = await mapsService.createMap({
+        title,
+        userId: authStore.user?.id
+      })
       maps.value.push(newMap)
       return newMap
     } catch (e) {

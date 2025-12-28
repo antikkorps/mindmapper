@@ -1,7 +1,9 @@
 import apiClient from './apiClient'
 
-export const getMaps = async () => {
-  const response = await apiClient.get('/maps')
+export const getMaps = async (userId) => {
+  // If userId provided, get user-specific maps, otherwise get all
+  const endpoint = userId ? `/maps/user/${userId}` : '/maps'
+  const response = await apiClient.get(endpoint)
   return response.data
 }
 

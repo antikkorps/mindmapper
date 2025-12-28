@@ -1,5 +1,5 @@
 <template>
-  <div class="toast toast-top toast-end z-50">
+  <div class="toast toast-bottom toast-end z-50">
     <TransitionGroup name="toast">
       <div
         v-for="toast in toasts"
@@ -21,14 +21,8 @@
 </template>
 
 <script setup>
+import { AlertTriangle, CheckCircle2, Info, X, XCircle } from 'lucide-vue-next'
 import { ref } from 'vue'
-import {
-  CheckCircle2,
-  XCircle,
-  AlertTriangle,
-  Info,
-  X,
-} from 'lucide-vue-next'
 
 const toasts = ref([])
 let nextId = 1

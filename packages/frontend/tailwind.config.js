@@ -24,7 +24,7 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ['light', 'dark', 'cupcake', 'cyberpunk', 'forest', 'sunset'],
+    themes: ['light', 'dark', 'cupcake', 'retro', 'forest', 'wireframe'],
     darkTheme: 'dark',
     base: true,
     styled: true,

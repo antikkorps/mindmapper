@@ -2,7 +2,9 @@ import apiClient from './apiClient'
 
 export const getNodesByMap = async mapId => {
   const response = await apiClient.get(`/maps/${mapId}/nodes`)
-  return response.data
+  // Backend returns { success: true, data: { ...map, nodes: [...] } }
+  // We need to extract the nodes array
+  return response.data.nodes || []
 }
 
 export const getNodeById = async id => {

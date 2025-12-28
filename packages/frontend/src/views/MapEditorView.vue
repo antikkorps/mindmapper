@@ -48,6 +48,7 @@
         :min-zoom="0.2"
         :max-zoom="4"
         @node-drag-stop="onNodeDragStop"
+        @connect="onConnect"
         @edge-update="onEdgeUpdate"
         @node-click="onNodeClick"
         @node-double-click="onNodeDoubleClick"
@@ -228,6 +229,26 @@ const onNodeDragStop = async event => {
   })
 }
 
+const onConnect = async (connection) => {
+  try {
+    // Update the parent-child relationship in backend
+    await nodesStore.updateNodeParent(connection.target, connection.source)
+
+    // Add the edge visually
+    elements.value.push({
+      id: `e${connection.source}-${connection.target}`,
+      source: connection.source,
+      target: connection.target,
+      type: 'smoothstep',
+    })
+
+    toast.success('Connection created')
+  } catch (error) {
+    toast.error('Failed to create connection')
+    console.error('Error creating connection:', error)
+  }
+}
+
 const onEdgeUpdate = async ({ edge, connection }) => {
   try {
     await nodesStore.updateNodeParent(connection.target, connection.source)
@@ -304,6 +325,17 @@ const duplicateNode = async () => {
       parentId: node.parentId || null,
     })
     elements.value.push(newNode)
+
+    // If original node has a parent, create the edge for the duplicate
+    if (node.parentId) {
+      elements.value.push({
+        id: `e${node.parentId}-${newNode.id}`,
+        source: node.parentId,
+        target: newNode.id,
+        type: 'smoothstep',
+      })
+    }
+
     toast.success('Node duplicated')
   } catch (error) {
     toast.error('Failed to duplicate node')

@@ -2,7 +2,7 @@
   <div
     v-if="show"
     ref="menuRef"
-    class="absolute z-50 menu bg-base-200 rounded-box shadow-xl w-48 p-2"
+    class="fixed z-50 menu bg-base-200 rounded-box shadow-xl w-48 p-2"
     :style="menuStyle"
     @click.stop
   >
@@ -57,10 +57,34 @@ const emit = defineEmits(['edit', 'delete', 'duplicate', 'add-child', 'close'])
 
 const menuRef = ref(null)
 
-const menuStyle = computed(() => ({
-  left: `${props.x}px`,
-  top: `${props.y}px`,
-}))
+const menuStyle = computed(() => {
+  // Menu dimensions (approximate)
+  const menuWidth = 192 // w-48 = 12rem = 192px
+  const menuHeight = 200 // approximate height
+
+  // Viewport dimensions
+  const viewportWidth = window.innerWidth
+  const viewportHeight = window.innerHeight
+
+  // Calculate position, adjusting if menu would overflow viewport
+  let left = props.x
+  let top = props.y
+
+  // Adjust horizontal position if menu would overflow right edge
+  if (left + menuWidth > viewportWidth) {
+    left = viewportWidth - menuWidth - 10 // 10px margin
+  }
+
+  // Adjust vertical position if menu would overflow bottom edge
+  if (top + menuHeight > viewportHeight) {
+    top = viewportHeight - menuHeight - 10 // 10px margin
+  }
+
+  return {
+    left: `${left}px`,
+    top: `${top}px`,
+  }
+})
 
 // Close menu when clicking outside
 const handleClickOutside = event => {

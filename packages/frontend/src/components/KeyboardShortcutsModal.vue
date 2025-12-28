@@ -86,6 +86,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { Keyboard, Edit3, Eye, Navigation, Search } from 'lucide-vue-next'
+import ShortcutItem from './ShortcutItem.vue'
 
 const props = defineProps({
   show: {
@@ -111,21 +112,5 @@ watch(
 
 const close = () => {
   emit('close')
-}
-</script>
-
-<script>
-// Shortcut item sub-component
-export const ShortcutItem = {
-  props: {
-    keys: String,
-    description: String,
-  },
-  template: `
-    <div class="flex justify-between items-center text-sm">
-      <span class="text-base-content/70">{{ description }}</span>
-      <kbd class="kbd kbd-sm">{{ keys }}</kbd>
-    </div>
-  `,
 }
 </script>
