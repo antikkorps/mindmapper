@@ -116,7 +116,6 @@ import { CheckCircle2, XCircle } from 'lucide-vue-next'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const toast = useToast()
 
 const formData = reactive({
   email: '',
@@ -164,9 +163,11 @@ const handleLogin = async () => {
       password: formData.password,
     })
 
+    const toast = useToast()
     toast.success('Welcome back!')
     router.push('/maps')
   } catch (error) {
+    const toast = useToast()
     toast.error('Login failed. Please check your credentials.')
     console.error('Login error:', error)
   }

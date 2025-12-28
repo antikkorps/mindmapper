@@ -1,21 +1,26 @@
 import apiClient from './apiClient'
 
 export const getNodesByMap = async mapId => {
-  return apiClient.get(`/maps/${mapId}/nodes`)
+  const response = await apiClient.get(`/maps/${mapId}/nodes`)
+  return response.data
 }
 
 export const getNodeById = async id => {
-  return apiClient.get(`/nodes/${id}`)
+  const response = await apiClient.get(`/nodes/${id}`)
+  return response.data
 }
 
 export const createNode = async data => {
-  return apiClient.post('/nodes', data)
+  const response = await apiClient.post('/nodes', data)
+  return response.data
 }
 
 export const updateNode = async (id, data) => {
-  return apiClient.patch(`/nodes/${id}`, data)
+  const response = await apiClient.patch(`/nodes/${id}`, data)
+  return response.data
 }
 
 export const deleteNode = async id => {
-  return apiClient.delete(`/nodes/${id}`)
+  const response = await apiClient.delete(`/nodes/${id}`)
+  return response.data
 }

@@ -32,14 +32,13 @@
 
       <!-- User menu -->
       <div v-if="authStore.isAuthenticated" class="dropdown dropdown-end">
-        <div
-          tabindex="0"
-          role="button"
-          class="btn btn-ghost btn-circle avatar placeholder"
-        >
-          <div class="bg-neutral text-neutral-content rounded-full w-10">
-            <span class="text-xl">{{ authStore.userInitials }}</span>
-          </div>
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <Avatar
+            :seed="authStore.user?.username || authStore.user?.email || 'user'"
+            :name="authStore.user?.username"
+            size="sm"
+            avatar-style="avataaars"
+          />
         </div>
         <ul
           tabindex="0"
@@ -74,10 +73,10 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useToast } from '@/composables/useToast'
 import { Palette, LogIn } from 'lucide-vue-next'
+import Avatar from '@/components/Avatar.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const toast = useToast()
 
 const themes = ['light', 'dark', 'cupcake', 'cyberpunk', 'forest', 'sunset']
 const currentTheme = ref('light')
@@ -97,6 +96,7 @@ const changeTheme = theme => {
 
 const handleLogout = () => {
   authStore.logout()
+  const toast = useToast()
   toast.success('Logged out successfully')
   router.push('/login')
 }

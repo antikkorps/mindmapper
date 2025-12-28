@@ -101,6 +101,12 @@
       @close="closeEditorModal"
       @save="saveNodeLabel"
     />
+
+    <!-- Keyboard Shortcuts Help Modal -->
+    <KeyboardShortcutsModal
+      :show="showKeyboardHelp"
+      @close="showKeyboardHelp = false"
+    />
   </div>
 </template>
 
@@ -114,9 +120,12 @@ import { MiniMap } from '@vue-flow/minimap'
 import { useNodesStore } from '@/stores/nodes'
 import { useMapsStore } from '@/stores/maps'
 import { useToast } from '@/composables/useToast'
+import { useKeyboardShortcuts } from '@/composables/useKeyboardShortcuts'
 import { debounce } from '@/utils/debounce'
+import { applyAutoLayout, LAYOUT_PRESETS } from '@/utils/autoLayout'
 import NodeEditorModal from '@/components/NodeEditorModal.vue'
 import NodeContextMenu from '@/components/NodeContextMenu.vue'
+import KeyboardShortcutsModal from '@/components/KeyboardShortcutsModal.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -130,6 +139,7 @@ const mapTitle = ref('')
 const elements = ref([])
 const loading = ref(false)
 const saving = ref(false)
+const showKeyboardHelp = ref(false)
 
 // Context menu state
 const contextMenu = reactive({
@@ -143,6 +153,21 @@ const contextMenu = reactive({
 const editorModal = reactive({
   show: false,
   node: null,
+})
+
+// Keyboard shortcuts
+useKeyboardShortcuts({
+  'ctrl+n': () => addNode(),
+  'escape': () => {
+    if (contextMenu.show) closeContextMenu()
+    if (editorModal.show) closeEditorModal()
+  },
+  'shift+?': () => {
+    showKeyboardHelp.value = true
+  },
+  'f1': () => {
+    showKeyboardHelp.value = true
+  },
 })
 
 onMounted(async () => {
@@ -359,9 +384,45 @@ const updateMapTitle = async () => {
   }
 }
 
-const autoLayout = () => {
-  toast.info('Auto layout coming soon!')
-  // TODO: Implement Dagre auto-layout
+const autoLayout = async () => {
+  if (elements.value.length === 0) {
+    toast.warning('No nodes to layout')
+    return
+  }
+
+  try {
+    // Apply Dagre layout
+    const layoutedElements = applyAutoLayout(elements.value, LAYOUT_PRESETS.VERTICAL)
+
+    // Extract nodes to update positions in backend
+    const nodes = layoutedElements.filter(el => !el.source && !el.target)
+
+    // Update positions in Vue Flow (immediate visual feedback)
+    elements.value = layoutedElements
+
+    // Batch update positions in backend
+    saving.value = true
+    const updatePromises = nodes.map(node =>
+      nodesStore.updateNodePosition(node.id, {
+        posX: node.position.x,
+        posY: node.position.y,
+      })
+    )
+
+    await Promise.all(updatePromises)
+
+    toast.success('Layout applied successfully')
+
+    // Fit view to show all nodes
+    setTimeout(() => {
+      vueFlowFitView({ padding: 0.2, duration: 300 })
+    }, 100)
+  } catch (error) {
+    toast.error('Failed to apply layout')
+    console.error('Auto-layout error:', error)
+  } finally {
+    saving.value = false
+  }
 }
 
 const fitView = () => {

@@ -34,17 +34,17 @@ export const useAuthStore = defineStore('auth', () => {
         password,
       })
 
-      // Save tokens
-      accessToken.value = response.accessToken
-      refreshToken.value = response.refreshToken
-      user.value = response.user
+      // Save tokens (response.data from backend)
+      accessToken.value = response.data.accessToken
+      refreshToken.value = response.data.refreshToken
+      user.value = response.data.user
 
       // Store in localStorage
-      localStorage.setItem('access_token', response.accessToken)
-      localStorage.setItem('refresh_token', response.refreshToken)
-      localStorage.setItem('auth_token', response.accessToken) // For apiClient
+      localStorage.setItem('access_token', response.data.accessToken)
+      localStorage.setItem('refresh_token', response.data.refreshToken)
+      localStorage.setItem('auth_token', response.data.accessToken) // For apiClient
 
-      return response
+      return response.data
     } catch (e) {
       error.value = e.message
       throw e
@@ -62,17 +62,17 @@ export const useAuthStore = defineStore('auth', () => {
         password,
       })
 
-      // Save tokens
-      accessToken.value = response.accessToken
-      refreshToken.value = response.refreshToken
-      user.value = response.user
+      // Save tokens (response.data from backend)
+      accessToken.value = response.data.accessToken
+      refreshToken.value = response.data.refreshToken
+      user.value = response.data.user
 
       // Store in localStorage
-      localStorage.setItem('access_token', response.accessToken)
-      localStorage.setItem('refresh_token', response.refreshToken)
-      localStorage.setItem('auth_token', response.accessToken) // For apiClient
+      localStorage.setItem('access_token', response.data.accessToken)
+      localStorage.setItem('refresh_token', response.data.refreshToken)
+      localStorage.setItem('auth_token', response.data.accessToken) // For apiClient
 
-      return response
+      return response.data
     } catch (e) {
       error.value = e.message
       throw e
@@ -98,8 +98,8 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
     try {
       const response = await apiClient.get('/auth/me')
-      user.value = response.user || response
-      return response
+      user.value = response.data
+      return response.data
     } catch (e) {
       error.value = e.message
       // If unauthorized, clear tokens
@@ -118,11 +118,11 @@ export const useAuthStore = defineStore('auth', () => {
         refreshToken: refreshToken.value,
       })
 
-      accessToken.value = response.accessToken
-      localStorage.setItem('access_token', response.accessToken)
-      localStorage.setItem('auth_token', response.accessToken)
+      accessToken.value = response.data.accessToken
+      localStorage.setItem('access_token', response.data.accessToken)
+      localStorage.setItem('auth_token', response.data.accessToken)
 
-      return response.accessToken
+      return response.data.accessToken
     } catch (e) {
       // If refresh fails, logout
       logout()

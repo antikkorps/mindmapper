@@ -7,9 +7,8 @@ export function setToastInstance(instance) {
 
 export function useToast() {
   if (!toastInstance) {
-    console.warn(
-      'Toast instance not set. Make sure to add Toast component to App.vue'
-    )
+    // Toast not ready yet - return no-op functions
+    // This is normal during initial component setup
     return {
       success: () => {},
       error: () => {},

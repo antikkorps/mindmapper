@@ -57,7 +57,7 @@ const authController = {
             username: user.username,
             email: user.email,
           },
-          token,
+          accessToken: token,
           refreshToken,
         },
       }
@@ -121,7 +121,7 @@ const authController = {
             username: user.username,
             email: user.email,
           },
-          token,
+          accessToken: token,
           refreshToken,
         },
       }
@@ -173,7 +173,7 @@ const authController = {
       ctx.body = {
         success: true,
         data: {
-          token: newToken,
+          accessToken: newToken,
         },
       }
     } catch (error) {

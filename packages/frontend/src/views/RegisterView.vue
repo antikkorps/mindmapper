@@ -156,7 +156,6 @@ import { Sparkles, XCircle } from 'lucide-vue-next'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const toast = useToast()
 
 const formData = reactive({
   username: '',
@@ -230,9 +229,11 @@ const handleRegister = async () => {
       password: formData.password,
     })
 
+    const toast = useToast()
     toast.success('Account created successfully!')
     router.push('/maps')
   } catch (error) {
+    const toast = useToast()
     toast.error('Registration failed. Please try again.')
     console.error('Registration error:', error)
   }

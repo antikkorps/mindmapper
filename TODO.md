@@ -26,6 +26,9 @@
 - ✅ Node editor modal (double-click)
 - ✅ Context menu (right-click: edit, delete, duplicate, add child)
 - ✅ Lucide icons integration (consistent design)
+- ✅ **Phase 2A: DiceBear avatars + Keyboard shortcuts** ✨
+- ✅ **Phase 2C: Dagre auto-layout (4 presets)** ✨
+- ✅ API response unwrapping (`.data` extraction from backend)
 
 ---
 
@@ -64,10 +67,11 @@
 - ✅ **Core Components**
   - ✅ Dashboard view (list of maps) with loading/empty states
   - ✅ Map editor view (Vue Flow canvas)
-  - [ ] Node editor modal (double-click to edit label)
+  - ✅ Node editor modal (double-click to edit label)
   - ✅ Navigation bar with theme switcher (6 DaisyUI themes)
   - ✅ Map card component (rename, delete, duplicate actions)
   - ✅ Toast notification system (success, error, warning, info)
+  - ✅ Node context menu (right-click actions)
 
 - ✅ **Vue Flow Integration**
   - ✅ Configure Vue Flow properly
@@ -141,11 +145,12 @@
 
 ### UI/UX Improvements
 
-- [ ] **DiceBear Avatar Integration**
-  - [ ] Install @dicebear/core and avatar styles
-  - [ ] Replace user initials with generated avatars
-  - [ ] Consistent avatar style across app
-  - [ ] Avatar customization in user profile
+- ✅ **DiceBear Avatar Integration**
+  - ✅ Install @dicebear/core and @dicebear/collection
+  - ✅ Replace user initials with generated avatars
+  - ✅ Avatar component (avataaars, bottts, lorelei, personas)
+  - ✅ Integrated in Navbar
+  - [ ] Avatar customization in user profile (future)
 
 - [ ] **Internationalization (i18n)**
   - [ ] Install vue-i18n
@@ -155,10 +160,13 @@
   - [ ] Persist language preference (localStorage)
   - [ ] Date/time localization
 
-- [ ] Auto-layout with Dagre
-  - [ ] Install @vue-flow/dagre
-  - [ ] Implement auto-arrange algorithm
-  - [ ] Smooth transitions
+- ✅ **Auto-layout with Dagre**
+  - ✅ Install dagre library
+  - ✅ Implement auto-arrange algorithm (TB, LR, Compact, Spacious presets)
+  - ✅ Batch position update to backend
+  - ✅ Auto fit-view after layout
+  - ✅ DRY utility: applyAutoLayout()
+  - [ ] Layout animation/transitions (future)
 
 - [ ] Export functionality
   - [ ] Export as PNG (html-to-image)
@@ -178,12 +186,16 @@
   - [ ] Node sizing options
   - [ ] Custom node shapes (rectangle, circle, diamond)
 
-- [ ] Keyboard Shortcuts
-  - [ ] Add node (Ctrl+N)
-  - [ ] Delete node (Delete)
-  - [ ] Undo/Redo (Ctrl+Z/Ctrl+Y)
-  - [ ] Save (Ctrl+S)
-  - [ ] Keyboard shortcuts help modal (?)
+- ✅ **Keyboard Shortcuts**
+  - ✅ Add node (Ctrl+N)
+  - ✅ Close modal/menu (Esc)
+  - ✅ Help modal (Shift+?, F1)
+  - ✅ DRY composable: useKeyboardShortcuts()
+  - ✅ KeyboardShortcutsModal component (beautiful modal with all shortcuts)
+  - [ ] Delete node (Delete) - needs node selection first
+  - [ ] Undo/Redo (Ctrl+Z/Ctrl+Y) - needs history stack
+  - [ ] Save (Ctrl+S) - auto-save already implemented
+  - [ ] Zoom shortcuts (Ctrl+0, Ctrl++, Ctrl+-)
 
 ### Performance Optimization
 
@@ -330,11 +342,16 @@
 5. ✅ ~~Build Dashboard and Map Editor views~~
 6. ✅ ~~Integrate Vue Flow with Pinia stores~~
 7. ✅ ~~Connect frontend to backend API~~
-8. **NEXT:** Complete frontend MVP (Node editor modal, delete node UI)
-9. Implement frontend auth flow (login/register/guards)
-10. Increase backend test coverage (controllers, middlewares, services) → 80%
-11. Add custom node styles with DaisyUI
-12. Implement keyboard shortcuts (Ctrl+N, Delete, Esc)
+8. ✅ ~~Complete frontend MVP (Node editor modal, delete node UI)~~
+9. ✅ ~~Implement frontend auth flow (login/register/guards)~~
+10. ✅ ~~Phase 2A: DiceBear avatars + Keyboard shortcuts~~
+11. ✅ ~~Phase 2C: Dagre auto-layout~~
+12. **NEXT OPTIONS:**
+    - **Option A:** Phase 2B - i18n (vue-i18n, FR/EN translations)
+    - **Option B:** Backend testing (increase coverage to 80%+)
+    - **Option C:** Export features (PNG, PDF, JSON)
+    - **Option D:** Advanced node features (colors, icons, rich text)
+    - **Option E:** Custom node styles with DaisyUI
 
 ### Technical Debt
 

@@ -70,7 +70,6 @@ import MapCard from '@/components/MapCard.vue'
 
 const router = useRouter()
 const mapsStore = useMapsStore()
-const toast = useToast()
 
 const maps = ref([])
 const loading = ref(false)
@@ -85,6 +84,7 @@ const loadMaps = async () => {
     await mapsStore.fetchMaps()
     maps.value = mapsStore.maps
   } catch (error) {
+    const toast = useToast()
     toast.error('Failed to load maps')
     console.error('Error loading maps:', error)
   } finally {
@@ -97,9 +97,11 @@ const createMap = async () => {
   try {
     const newMap = await mapsStore.createMap('Untitled Map')
     maps.value = mapsStore.maps
+    const toast = useToast()
     toast.success('Map created successfully')
     router.push(`/maps/${newMap.id}`)
   } catch (error) {
+    const toast = useToast()
     toast.error('Failed to create map')
     console.error('Error creating map:', error)
   } finally {
@@ -115,8 +117,10 @@ const updateMap = async ({ id, title }) => {
   try {
     await mapsStore.updateMap(id, { title })
     maps.value = mapsStore.maps
+    const toast = useToast()
     toast.success('Map renamed')
   } catch (error) {
+    const toast = useToast()
     toast.error('Failed to rename map')
     console.error('Error updating map:', error)
   }
@@ -131,8 +135,10 @@ const deleteMap = async id => {
   try {
     await mapsStore.deleteMap(id)
     maps.value = mapsStore.maps
+    const toast = useToast()
     toast.success('Map deleted')
   } catch (error) {
+    const toast = useToast()
     toast.error('Failed to delete map')
     console.error('Error deleting map:', error)
   }
@@ -140,6 +146,7 @@ const deleteMap = async id => {
 
 const duplicateMap = async id => {
   // TODO: Implement duplicate functionality in backend
+  const toast = useToast()
   toast.info('Duplicate feature coming soon!')
   console.log('Duplicate map:', id)
 }
