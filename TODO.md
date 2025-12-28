@@ -16,6 +16,16 @@
 - ✅ Swagger/OpenAPI documentation
 - ✅ Rate limiting middleware
 - ✅ **Testing infrastructure with DRY + mocked database (41 tests passing)**
+- ✅ **Frontend MVP 100% complete** ✨
+- ✅ Dashboard + Map Editor fully functional
+- ✅ Toast notification system (DaisyUI + Lucide icons)
+- ✅ Theme switcher (6 DaisyUI themes)
+- ✅ Debounced position updates (300ms)
+- ✅ DRY composables (useToast, useApiCall)
+- ✅ **Authentication system (Login/Register/Guards)**
+- ✅ Node editor modal (double-click)
+- ✅ Context menu (right-click: edit, delete, duplicate, add child)
+- ✅ Lucide icons integration (consistent design)
 
 ---
 
@@ -51,33 +61,40 @@
 
 ### Frontend UI
 
-- [ ] Core Components
-  - [ ] Dashboard view (list of maps)
-  - [ ] Map editor view (Vue Flow canvas)
-  - [ ] Node editor modal/inline
-  - [ ] Navigation bar
-  - [ ] Map card component
+- ✅ **Core Components**
+  - ✅ Dashboard view (list of maps) with loading/empty states
+  - ✅ Map editor view (Vue Flow canvas)
+  - [ ] Node editor modal (double-click to edit label)
+  - ✅ Navigation bar with theme switcher (6 DaisyUI themes)
+  - ✅ Map card component (rename, delete, duplicate actions)
+  - ✅ Toast notification system (success, error, warning, info)
 
-- [ ] Vue Flow Integration
-  - [ ] Configure Vue Flow properly
-  - [ ] Implement node dragging
-  - [ ] Implement edge creation (parent-child)
+- ✅ **Vue Flow Integration**
+  - ✅ Configure Vue Flow properly
+  - ✅ Implement node dragging with debounced save (300ms)
+  - ✅ Implement edge creation (parent-child relationships)
   - [ ] Custom node styles with DaisyUI
-  - [ ] Background pattern
-  - [ ] Controls (zoom, fit view)
-  - [ ] Minimap
+  - ✅ Background pattern (dot grid)
+  - ✅ Controls (zoom, fit view, pan)
+  - ✅ Minimap
 
-- [ ] State Management (Pinia)
-  - [ ] Maps store (CRUD operations)
-  - [ ] Nodes store (CRUD + position updates)
-  - [ ] Debounce position updates (300ms)
-  - [ ] Optimistic UI updates
+- ✅ **State Management (Pinia)**
+  - ✅ Maps store (CRUD operations)
+  - ✅ Nodes store (CRUD + position updates)
+  - ✅ Debounce position updates (300ms)
+  - ✅ Optimistic UI updates
 
-- [ ] API Integration
-  - [ ] Create API client service
-  - [ ] Error handling
-  - [ ] Loading states
-  - [ ] Success/error notifications
+- ✅ **API Integration**
+  - ✅ Create API client service (fetch-based with auth headers)
+  - ✅ Error handling with toast notifications
+  - ✅ Loading states (skeletons, spinners, disabled buttons)
+  - ✅ Success/error notifications
+
+- ✅ **DRY Utilities & Composables**
+  - ✅ `useToast` composable (global toast instance)
+  - ✅ `useApiCall` composable (loading, error states)
+  - ✅ `debounce` utility (300ms for position updates)
+  - ✅ `throttle` utility (rate limiting)
 
 ### Testing
 
@@ -124,6 +141,20 @@
 
 ### UI/UX Improvements
 
+- [ ] **DiceBear Avatar Integration**
+  - [ ] Install @dicebear/core and avatar styles
+  - [ ] Replace user initials with generated avatars
+  - [ ] Consistent avatar style across app
+  - [ ] Avatar customization in user profile
+
+- [ ] **Internationalization (i18n)**
+  - [ ] Install vue-i18n
+  - [ ] Setup language files (en, fr)
+  - [ ] Extract all hardcoded strings to i18n keys
+  - [ ] Language switcher in settings
+  - [ ] Persist language preference (localStorage)
+  - [ ] Date/time localization
+
 - [ ] Auto-layout with Dagre
   - [ ] Install @vue-flow/dagre
   - [ ] Implement auto-arrange algorithm
@@ -135,21 +166,24 @@
   - [ ] Export as JSON
 
 - [ ] Theme System
-  - [ ] Theme selector component
-  - [ ] Persist theme preference (localStorage)
+  - ✅ Theme selector component
+  - ✅ Persist theme preference (localStorage)
   - [ ] Custom mindmap color schemes
+  - [ ] Per-map theme settings
 
 - [ ] Advanced Node Features
   - [ ] Rich text editing (markdown support)
   - [ ] Node icons/emojis
   - [ ] Node colors
   - [ ] Node sizing options
+  - [ ] Custom node shapes (rectangle, circle, diamond)
 
 - [ ] Keyboard Shortcuts
   - [ ] Add node (Ctrl+N)
   - [ ] Delete node (Delete)
   - [ ] Undo/Redo (Ctrl+Z/Ctrl+Y)
   - [ ] Save (Ctrl+S)
+  - [ ] Keyboard shortcuts help modal (?)
 
 ### Performance Optimization
 
@@ -187,11 +221,15 @@
   - ✅ Refresh token mechanism
   - ✅ Protected routes middleware
 
-- [ ] Frontend Auth
-  - [ ] Login/Register forms
-  - [ ] Auth guards (router)
-  - [ ] Token storage (localStorage/cookies)
-  - [ ] Auto-logout on token expiry
+- ✅ **Frontend Auth**
+  - ✅ Login/Register forms (DaisyUI + validation)
+  - ✅ Auth guards (router beforeEach)
+  - ✅ Token storage (localStorage: access + refresh)
+  - ✅ Auto-logout on token expiry
+  - ✅ Auth store (Pinia) with initializeAuth
+  - ✅ Protected routes (/maps, /maps/:id)
+  - ✅ Guest routes (/login, /register)
+  - ✅ Navbar integration (user menu, logout)
 
 ### Sharing & Permissions
 
@@ -289,11 +327,14 @@
 2. ✅ ~~Implement core API endpoints (Maps + Nodes)~~
 3. ✅ ~~Add basic error handling and validation~~
 4. ✅ ~~Implement testing infrastructure with DRY + mocking~~
-5. **NEXT:** Increase test coverage (controllers, middlewares, services)
-6. Build Dashboard and Map Editor views
-7. Integrate Vue Flow with Pinia stores
-8. Implement frontend auth flow (login/register)
-9. Connect frontend to backend API
+5. ✅ ~~Build Dashboard and Map Editor views~~
+6. ✅ ~~Integrate Vue Flow with Pinia stores~~
+7. ✅ ~~Connect frontend to backend API~~
+8. **NEXT:** Complete frontend MVP (Node editor modal, delete node UI)
+9. Implement frontend auth flow (login/register/guards)
+10. Increase backend test coverage (controllers, middlewares, services) → 80%
+11. Add custom node styles with DaisyUI
+12. Implement keyboard shortcuts (Ctrl+N, Delete, Esc)
 
 ### Technical Debt
 
