@@ -15,10 +15,12 @@ const router = new Router({
 })
 
 router.get('/', nodeController.getAllNodes)
-router.get('/:id', validateParams(nodeIdSchema), nodeController.getNodeById)
+// Specific routes MUST come before generic /:id routes
 router.get('/map/:mapId', validateParams(nodesByMapSchema), nodeController.getNodesByMap)
+router.get('/:id', validateParams(nodeIdSchema), nodeController.getNodeById)
 router.post('/', validateBody(createNodeSchema), nodeController.createNode)
 router.put('/:id', validateParams(nodeIdSchema), validateBody(updateNodeSchema), nodeController.updateNode)
+router.patch('/:id', validateParams(nodeIdSchema), validateBody(updateNodeSchema), nodeController.updateNode)
 router.patch('/:id/position', validateParams(nodeIdSchema), validateBody(updateNodePositionSchema), nodeController.updateNodePosition)
 router.patch('/:id/label', validateParams(nodeIdSchema), validateBody(updateNodeLabelSchema), nodeController.updateNodeLabel)
 router.delete('/:id', validateParams(nodeIdSchema), nodeController.deleteNode)
