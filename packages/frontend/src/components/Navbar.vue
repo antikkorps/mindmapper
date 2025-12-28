@@ -65,6 +65,7 @@
 
 <script setup>
 import Avatar from '@/components/Avatar.vue'
+import { APP_CONFIG } from '@/config/app.js'
 import { useToast } from '@/composables/useToast'
 import { useAuthStore } from '@/stores/auth'
 import { LogIn, Palette } from 'lucide-vue-next'
@@ -74,12 +75,12 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const authStore = useAuthStore()
 
-const themes = ['light', 'dark', 'cupcake', 'retro', 'forest', 'wireframe']
-const currentTheme = ref('light')
+const themes = APP_CONFIG.themes
+const currentTheme = ref(APP_CONFIG.defaultTheme)
 
 onMounted(() => {
   // Load saved theme from localStorage
-  const savedTheme = localStorage.getItem('theme') || 'light'
+  const savedTheme = localStorage.getItem('theme') || APP_CONFIG.defaultTheme
   currentTheme.value = savedTheme
   document.documentElement.setAttribute('data-theme', savedTheme)
 })

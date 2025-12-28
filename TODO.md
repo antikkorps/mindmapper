@@ -230,6 +230,7 @@
   - [ ] Per-map theme settings
 
 - [ ] Advanced Node Features
+  - [ ] Collapse/Expand nodes with click
   - [ ] Rich text editing (markdown support)
   - [ ] Node icons/emojis
   - [ ] Node colors

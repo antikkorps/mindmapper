@@ -301,6 +301,7 @@
 <script setup>
 import Footer from '@/components/Footer.vue'
 import SponsorModal from '@/components/SponsorModal.vue'
+import { APP_CONFIG } from '@/config/app.js'
 import {
   GitBranch,
   Keyboard,
@@ -316,13 +317,13 @@ import {
 } from 'lucide-vue-next'
 import { ref } from 'vue'
 
-// Social links
-const githubUrl = 'https://github.com/antikkorps/mindmapper'
-
-// Sponsor links - TODO: Update with your actual URLs
-const buyMeACoffeeUrl = 'https://buymeacoffee.com/antikkorps'
-const kofiUrl = '' // Optional
-const githubSponsorsUrl = '' // Optional
+// Import links from centralized config
+const {
+  github: githubUrl,
+  buyMeACoffee: buyMeACoffeeUrl,
+  kofi: kofiUrl,
+  githubSponsors: githubSponsorsUrl,
+} = APP_CONFIG.links
 
 const sponsorModalOpen = ref(false)
 
