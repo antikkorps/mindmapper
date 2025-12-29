@@ -1,0 +1,264 @@
+{
+  "locale": "en",
+  "common": {
+    "app": "MindMapper",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "actions": "Actions",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "submit": "Submit",
+    "required": "Required",
+    "optional": "Optional",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "home": {
+    "hero": {
+      "badge": "Open Source",
+      "title": "MindMapper",
+      "subtitle": "Organize your thoughts visually",
+      "description": "Create beautiful, interactive mind maps with drag-and-drop simplicity. Perfect for brainstorming, planning, and organizing ideas.",
+      "cta": {
+        "startFree": "Start Free",
+        "signIn": "Sign In"
+      },
+      "socialProof": {
+        "openSource": "Open Source",
+        "freeForever": "Free Forever",
+        "privacyFirst": "Privacy First"
+      },
+      "stats": {
+        "ideas": "Ideas",
+        "maps": "Maps",
+        "nodes": "Nodes"
+      }
+    },
+    "stats": {
+      "totalNodes": {
+        "title": "Total Nodes",
+        "value": "Unlimited",
+        "desc": "Create as many as you need"
+      },
+      "realtimeSave": {
+        "title": "Real-time Save",
+        "value": "Auto",
+        "desc": "Never lose your work"
+      },
+      "themes": {
+        "title": "Themes",
+        "value": "6+",
+        "desc": "Beautiful DaisyUI themes"
+      }
+    },
+    "features": {
+      "title": "Powerful Features",
+      "description": "Everything you need to create stunning mind maps, built with modern web technologies.",
+      "hierarchical": {
+        "title": "Hierarchical Structure",
+        "description": "Create parent-child relationships with intuitive drag-and-drop connections."
+      },
+      "autolayout": {
+        "title": "Auto-Layout",
+        "description": "4 beautiful layout presets powered by Dagre algorithm for perfect organization."
+      },
+      "shortcuts": {
+        "title": "Keyboard Shortcuts",
+        "description": "Work faster with powerful shortcuts: Ctrl+N to add, Esc to close, and more."
+      },
+      "autosave": {
+        "title": "Auto-Save",
+        "description": "Your changes are automatically saved as you work. Never lose progress."
+      },
+      "avatars": {
+        "title": "User Avatars",
+        "description": "Beautiful DiceBear avatars with 4 different styles to choose from."
+      },
+      "themes": {
+        "title": "6 Themes",
+        "description": "Switch between light, dark, cupcake, retro, forest, and wireframe themes."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Get started in 3 simple steps",
+      "steps": {
+        "createAccount": {
+          "title": "Create Account",
+          "description": "Sign up for free in seconds"
+        },
+        "createMap": {
+          "title": "Create Your Map",
+          "description": "Add nodes and organize ideas"
+        },
+        "collaborate": {
+          "title": "Collaborate",
+          "description": "Share and work together"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join now and start organizing your ideas with beautiful mind maps.",
+      "button": "Create Free Account"
+    }
+  },
+  "navbar": {
+    "brand": "MindMapper",
+    "theme": "Theme",
+    "userMenu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
+  "maps": {
+    "title": "My Mind Maps",
+    "count": "{count} {count, plural, =1 {map} other {maps}}",
+    "newMap": "New Map",
+    "empty": {
+      "title": "No mind maps yet",
+      "description": "Create your first mind map to get started",
+      "button": "Create your first map"
+    },
+    "card": {
+      "edit": "Edit",
+      "rename": "Rename",
+      "duplicate": "Duplicate",
+      "delete": "Delete",
+      "open": "Open",
+      "nodes": "{count} {count, plural, =1 {node} other {nodes}}"
+    },
+    "messages": {
+      "loadSuccess": "Maps loaded successfully",
+      "loadError": "Failed to load maps",
+      "createSuccess": "Map created successfully",
+      "createError": "Failed to create map",
+      "updateSuccess": "Map updated successfully",
+      "updateError": "Failed to update map",
+      "deleteSuccess": "Map deleted successfully",
+      "deleteError": "Failed to delete map",
+      "deleteConfirm": "Are you sure you want to delete this map? This action cannot be undone.",
+      "renameSuccess": "Map renamed successfully",
+      "renameError": "Failed to rename map",
+      "duplicateComing": "Duplicate feature coming soon!"
+    }
+  },
+  "editor": {
+    "title": "Mind Map Editor",
+    "controls": {
+      "addNode": "Add Node",
+      "autoLayout": "Auto Layout",
+      "fitView": "Fit View",
+      "zoomIn": "Zoom In",
+      "zoomOut": "Zoom Out",
+      "help": "Keyboard Shortcuts",
+      "back": "Back to Maps"
+    },
+    "layoutPresets": {
+      "tb": "Top to Bottom",
+      "bt": "Bottom to Top",
+      "lr": "Left to Right",
+      "rl": "Right to Left"
+    },
+    "contextMenu": {
+      "title": "Actions",
+      "edit": "Edit Node",
+      "addChild": "Add Child Node",
+      "duplicate": "Duplicate Node",
+      "delete": "Delete Node",
+      "deleteConfirm": "Are you sure you want to delete this node and all its children?"
+    },
+    "nodeEditor": {
+      "title": "Edit Node",
+      "label": "Label",
+      "placeholder": "Enter node text...",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "close": "Close",
+      "shortcuts": {
+        "addNode": "Add Node",
+        "closeMenu": "Close Menu / Modal",
+        "help": "Show Help"
+      }
+    },
+    "messages": {
+      "loadSuccess": "Mind map loaded successfully",
+      "loadError": "Failed to load mind map",
+      "nodeCreated": "Node created successfully",
+      "nodeUpdated": "Node updated successfully",
+      "nodeDeleted": "Node deleted successfully",
+      "positionUpdated": "Position updated",
+      "layoutApplied": "Auto layout applied"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Welcome back!",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Create one"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start creating mind maps for free",
+      "username": "Username",
+      "usernamePlaceholder": "Choose a username",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in"
+    },
+    "messages": {
+      "loginSuccess": "Logged in successfully",
+      "loginError": "Failed to login. Please check your credentials.",
+      "registerSuccess": "Account created successfully",
+      "registerError": "Failed to create account. Please try again.",
+      "logoutSuccess": "Logged out successfully"
+    }
+  },
+  "toasts": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info",
+    "autoHide": "Auto-hide in {seconds}s",
+    "dismiss": "Dismiss"
+  },
+  "language": {
+    "select": "Language",
+    "en": "English",
+    "fr": "Français"
+  }
+}

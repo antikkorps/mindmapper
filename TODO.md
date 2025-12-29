@@ -48,6 +48,12 @@
   - ✅ Modern landing page with hero, mockups, stats, features
   - ✅ 6 feature cards, 3-step guide, CTAs
   - ✅ Social proof badges and responsive design
+- ✅ **Internationalization (i18n)** ✨
+  - ✅ vue-i18n@9 with EN/FR translations (265 lines each)
+  - ✅ LanguageSelector dropdown in Navbar
+  - ✅ Browser locale detection with localStorage persistence
+  - ✅ Plural support and date/time formats
+  - ✅ Full coverage: home, maps, editor, auth, toasts
 
 ---
 
@@ -169,17 +175,7 @@
   - ✅ Replace user initials with generated avatars
   - ✅ Avatar component (avataaars, bottts, lorelei, personas)
   - ✅ Integrated in Navbar
-  - [ ] Avatar customization in user profile (future)
-
-- [ ] **Internationalization (i18n)** 🎯 NEXT
-  - [ ] Install vue-i18n
-  - [ ] Setup language files (en, fr)
-  - [ ] Extract all hardcoded strings to i18n keys
-  - [ ] Language switcher in Navbar dropdown
-  - [ ] Persist language preference (localStorage)
-  - [ ] Date/time localization
-  - [ ] i18n for toast notifications
-  - [ ] i18n for keyboard shortcuts modal
+- [ ] Avatar customization in user profile (future)
 
 - ✅ **Sponsor/Support Integration** 💰
   - ✅ Add "Support this project" button in Footer (HomeView only)
@@ -204,6 +200,19 @@
   - ✅ Final CTA section with gradient
   - ✅ Footer and SponsorModal integration
   - ✅ Responsive design (mobile-first)
+- ✅ **Internationalization (i18n)** ✨
+  - ✅ Install vue-i18n@9 with DRY configuration
+  - ✅ Setup language files (en.json, fr.json) with structured keys
+  - ✅ Extract all hardcoded strings to i18n keys (all components)
+  - ✅ LanguageSelector component in Navbar dropdown
+  - ✅ Persist language preference (localStorage)
+  - ✅ Date/time localization formats
+  - ✅ Number localization formats
+  - ✅ i18n for toast notifications
+  - ✅ i18n for keyboard shortcuts modal
+  - ✅ Plural support (maps count, nodes count)
+  - ✅ Browser locale detection with fallback
+  - ✅ Full translation coverage: home, maps, editor, auth, toasts
 
 - [ ] **Real-time Collaboration Preview** 🚀
   - [ ] Figma-style live cursors (with user avatar/color)
@@ -427,13 +436,14 @@
 12. ✅ ~~Bug fixes & polish (UUIDs, connections, positioning)~~
 13. ✅ ~~Sponsor integration (Footer + SponsorModal)~~
 14. ✅ ~~Home page redesign with DaisyUI~~
-15. **NEXT OPTIONS:**
-    - **Option A:** Phase 2B - i18n (vue-i18n, FR/EN translations)
-    - **Option B:** Backend testing (increase coverage to 80%+)
-    - **Option C:** Export features (PNG, PDF, JSON)
-    - **Option D:** Advanced node features (colors, icons, rich text)
-    - **Option E:** Custom node styles with DaisyUI
-    - **Option F:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
+15. ✅ ~~Phase 2B: i18n (vue-i18n, FR/EN translations)~~
+16. **NEXT OPTIONS:**
+    - **Option A:** Backend testing (increase coverage to 80%+)
+    - **Option B:** Export features (PNG, PDF, JSON)
+    - **Option C:** Advanced node features (colors, icons, rich text)
+    - **Option D:** Custom node styles with DaisyUI
+    - **Option E:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
+    - **Option F:** Additional languages (es, de, it, pt)
 
 ### Technical Debt
 

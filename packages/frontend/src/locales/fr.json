@@ -1,0 +1,264 @@
+{
+  "locale": "fr",
+  "common": {
+    "app": "MindMapper",
+    "loading": "Chargement...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "actions": "Actions",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "email": "Email",
+    "password": "Mot de passe",
+    "username": "Nom d'utilisateur",
+    "submit": "Envoyer",
+    "required": "Obligatoire",
+    "optional": "Optionnel",
+    "success": "Succès",
+    "error": "Erreur",
+    "warning": "Attention",
+    "info": "Info"
+  },
+  "home": {
+    "hero": {
+      "badge": "Open Source",
+      "title": "MindMapper",
+      "subtitle": "Organisez vos pensées visuellement",
+      "description": "Créez des cartes mentales interactives et élégantes avec un simple glisser-déposer. Parfait pour le brainstorming, la planification et l'organisation des idées.",
+      "cta": {
+        "startFree": "Commencer",
+        "signIn": "Se connecter"
+      },
+      "socialProof": {
+        "openSource": "Open Source",
+        "freeForever": "Gratuit à vie",
+        "privacyFirst": "Confidentialité d'abord"
+      },
+      "stats": {
+        "ideas": "Idées",
+        "maps": "Cartes",
+        "nodes": "Nœuds"
+      }
+    },
+    "stats": {
+      "totalNodes": {
+        "title": "Total des nœuds",
+        "value": "Illimité",
+        "desc": "Créez-en autant que vous voulez"
+      },
+      "realtimeSave": {
+        "title": "Sauvegarde en temps réel",
+        "value": "Auto",
+        "desc": "Ne perdez jamais votre travail"
+      },
+      "themes": {
+        "title": "Thèmes",
+        "value": "6+",
+        "desc": "Magnifiques thèmes DaisyUI"
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités puissantes",
+      "description": "Tout ce dont vous avez besoin pour créer des cartes mentales époustouflantes, construit avec des technologies web modernes.",
+      "hierarchical": {
+        "title": "Structure hiérarchique",
+        "description": "Créez des relations parent-enfant avec des connexions glisser-déposer intuitives."
+      },
+      "autolayout": {
+        "title": "Mise en page automatique",
+        "description": "4 présélections de mise en page magnifiques propulsées par l'algorithme Dagre pour une organisation parfaite."
+      },
+      "shortcuts": {
+        "title": "Raccourcis clavier",
+        "description": "Travaillez plus vite avec des raccourcis puissants : Ctrl+N pour ajouter, Esc pour fermer, et plus encore."
+      },
+      "autosave": {
+        "title": "Sauvegarde automatique",
+        "description": "Vos modifications sont automatiquement sauvegardées pendant que vous travaillez. Ne perdez jamais votre progression."
+      },
+      "avatars": {
+        "title": "Avatars utilisateur",
+        "description": "Magnifiques avatars DiceBear avec 4 styles différents à choisir."
+      },
+      "themes": {
+        "title": "6 Thèmes",
+        "description": "Basculez entre les thèmes clair, sombre, cupcake, rétro, forêt et wireframe."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "subtitle": "Démarrez en 3 étapes simples",
+      "steps": {
+        "createAccount": {
+          "title": "Créer un compte",
+          "description": "Inscrivez-vous gratuitement en quelques secondes"
+        },
+        "createMap": {
+          "title": "Créer votre carte",
+          "description": "Ajoutez des nœuds et organisez vos idées"
+        },
+        "collaborate": {
+          "title": "Collaborer",
+          "description": "Partagez et travaillez ensemble"
+        }
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer ?",
+      "description": "Rejoignez maintenant et commencez à organiser vos idées avec de belles cartes mentales.",
+      "button": "Créer un compte gratuit"
+    }
+  },
+  "navbar": {
+    "brand": "MindMapper",
+    "theme": "Thème",
+    "userMenu": {
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    }
+  },
+  "maps": {
+    "title": "Mes cartes mentales",
+    "count": "{count} {count, plural, =1 {carte} other {cartes}}",
+    "newMap": "Nouvelle carte",
+    "empty": {
+      "title": "Aucune carte mentale",
+      "description": "Créez votre première carte mentale pour commencer",
+      "button": "Créer votre première carte"
+    },
+    "card": {
+      "edit": "Modifier",
+      "rename": "Renommer",
+      "duplicate": "Dupliquer",
+      "delete": "Supprimer",
+      "open": "Ouvrir",
+      "nodes": "{count} {count, plural, =1 {nœud} other {nœuds}}"
+    },
+    "messages": {
+      "loadSuccess": "Cartes chargées avec succès",
+      "loadError": "Échec du chargement des cartes",
+      "createSuccess": "Carte créée avec succès",
+      "createError": "Échec de la création de la carte",
+      "updateSuccess": "Carte mise à jour avec succès",
+      "updateError": "Échec de la mise à jour de la carte",
+      "deleteSuccess": "Carte supprimée avec succès",
+      "deleteError": "Échec de la suppression de la carte",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette carte ? Cette action ne peut pas être annulée.",
+      "renameSuccess": "Carte renommée avec succès",
+      "renameError": "Échec du renommage de la carte",
+      "duplicateComing": "La fonctionnalité de duplication arrive bientôt !"
+    }
+  },
+  "editor": {
+    "title": "Éditeur de carte mentale",
+    "controls": {
+      "addNode": "Ajouter un nœud",
+      "autoLayout": "Mise en page automatique",
+      "fitView": "Ajuster la vue",
+      "zoomIn": "Zoom avant",
+      "zoomOut": "Zoom arrière",
+      "help": "Raccourcis clavier",
+      "back": "Retour aux cartes"
+    },
+    "layoutPresets": {
+      "tb": "Haut vers bas",
+      "bt": "Bas vers haut",
+      "lr": "Gauche vers droite",
+      "rl": "Droite vers gauche"
+    },
+    "contextMenu": {
+      "title": "Actions",
+      "edit": "Modifier le nœud",
+      "addChild": "Ajouter un nœud enfant",
+      "duplicate": "Dupliquer le nœud",
+      "delete": "Supprimer le nœud",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce nœud et tous ses enfants ?"
+    },
+    "nodeEditor": {
+      "title": "Modifier le nœud",
+      "label": "Libellé",
+      "placeholder": "Entrez le texte du nœud...",
+      "save": "Enregistrer",
+      "cancel": "Annuler"
+    },
+    "shortcuts": {
+      "title": "Raccourcis clavier",
+      "close": "Fermer",
+      "shortcuts": {
+        "addNode": "Ajouter un nœud",
+        "closeMenu": "Fermer le menu / la modale",
+        "help": "Afficher l'aide"
+      }
+    },
+    "messages": {
+      "loadSuccess": "Carte mentale chargée avec succès",
+      "loadError": "Échec du chargement de la carte mentale",
+      "nodeCreated": "Nœud créé avec succès",
+      "nodeUpdated": "Nœud mis à jour avec succès",
+      "nodeDeleted": "Nœud supprimé avec succès",
+      "positionUpdated": "Position mise à jour",
+      "layoutApplied": "Mise en page automatique appliquée"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Bon retour !",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "submit": "Se connecter",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "registerLink": "Créer un compte"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Commencez à créer des cartes mentales gratuitement",
+      "username": "Nom d'utilisateur",
+      "usernamePlaceholder": "Choisissez un nom d'utilisateur",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Créez un mot de passe",
+      "submit": "Créer un compte",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "loginLink": "Se connecter"
+    },
+    "messages": {
+      "loginSuccess": "Connexion réussie",
+      "loginError": "Échec de la connexion. Veuillez vérifier vos identifiants.",
+      "registerSuccess": "Compte créé avec succès",
+      "registerError": "Échec de la création du compte. Veuillez réessayer.",
+      "logoutSuccess": "Déconnexion réussie"
+    }
+  },
+  "toasts": {
+    "success": "Succès",
+    "error": "Erreur",
+    "warning": "Attention",
+    "info": "Info",
+    "autoHide": "Masquer automatiquement dans {seconds}s",
+    "dismiss": "Fermer"
+  },
+  "language": {
+    "select": "Langue",
+    "en": "English",
+    "fr": "Français"
+  }
+}

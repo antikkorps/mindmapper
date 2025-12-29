@@ -3,9 +3,9 @@
     <div class="hero-content flex-col lg:flex-row-reverse gap-12">
       <!-- Info section -->
       <div class="text-center lg:text-left max-w-md">
-        <h1 class="text-5xl font-bold">Welcome back!</h1>
+        <h1 class="text-5xl font-bold">{{ $t('auth.login.subtitle') }}</h1>
         <p class="py-6">
-          Login to access your mind maps and continue organizing your ideas.
+          {{ $t('auth.messages.loginSuccess') }} {{ $t('maps.title') }}
         </p>
         <div class="flex flex-col gap-2 text-sm text-base-content/70">
           <div class="flex items-center gap-2">
@@ -26,17 +26,19 @@
       <!-- Login form -->
       <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
         <form class="card-body" @submit.prevent="handleLogin">
-          <h2 class="text-2xl font-bold text-center mb-4">Login</h2>
+          <h2 class="text-2xl font-bold text-center mb-4">
+            {{ $t('auth.login.title') }}
+          </h2>
 
           <!-- Email -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">Email</span>
+              <span class="label-text">{{ $t('auth.login.email') }}</span>
             </label>
             <input
               v-model="formData.email"
               type="email"
-              placeholder="email@example.com"
+              :placeholder="$t('auth.login.emailPlaceholder')"
               class="input input-bordered"
               :class="{ 'input-error': errors.email }"
               required
@@ -50,12 +52,12 @@
           <!-- Password -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">Password</span>
+              <span class="label-text">{{ $t('auth.login.password') }}</span>
             </label>
             <input
               v-model="formData.password"
               type="password"
-              placeholder="••••••••"
+              :placeholder="$t('auth.login.passwordPlaceholder')"
               class="input input-bordered"
               :class="{ 'input-error': errors.password }"
               required
@@ -89,17 +91,17 @@
                 v-if="authStore.loading"
                 class="loading loading-spinner loading-sm"
               ></span>
-              <span v-else>Login</span>
+              <span v-else>{{ $t('auth.login.submit') }}</span>
             </button>
           </div>
 
           <!-- Register link -->
           <div class="divider">OR</div>
           <p class="text-center text-sm">
-            Don't have an account?
-            <router-link to="/register" class="link link-primary"
-              >Register now</router-link
-            >
+            {{ $t('auth.login.noAccount') }}
+            <router-link to="/register" class="link link-primary">{{
+              $t('auth.login.registerLink')
+            }}</router-link>
           </p>
         </form>
       </div>
@@ -110,11 +112,13 @@
 <script setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/stores/auth'
 import { useToast } from '@/composables/useToast'
 import { CheckCircle2, XCircle } from 'lucide-vue-next'
 
 const router = useRouter()
+const { t } = useI18n()
 const authStore = useAuthStore()
 
 const formData = reactive({
@@ -132,7 +136,6 @@ const validateForm = () => {
   errors.email = ''
   errors.password = ''
 
-  // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!formData.email) {
     errors.email = 'Email is required'
@@ -142,7 +145,6 @@ const validateForm = () => {
     isValid = false
   }
 
-  // Password validation
   if (!formData.password) {
     errors.password = 'Password is required'
     isValid = false
@@ -164,11 +166,11 @@ const handleLogin = async () => {
     })
 
     const toast = useToast()
-    toast.success('Welcome back!')
+    toast.success(t('auth.messages.loginSuccess'))
     router.push('/maps')
   } catch (error) {
     const toast = useToast()
-    toast.error('Login failed. Please check your credentials.')
+    toast.error(t('auth.messages.loginError'))
     console.error('Login error:', error)
   }
 }

@@ -9,26 +9,26 @@
     <li>
       <a @click="$emit('edit')">
         <Edit3 :size="16" />
-        Edit Label
+        {{ $t('editor.contextMenu.edit') }}
       </a>
     </li>
     <li>
       <a @click="$emit('add-child')">
         <GitBranch :size="16" />
-        Add Child Node
+        {{ $t('editor.contextMenu.addChild') }}
       </a>
     </li>
     <li>
       <a @click="$emit('duplicate')">
         <Copy :size="16" />
-        Duplicate
+        {{ $t('editor.contextMenu.duplicate') }}
       </a>
     </li>
     <div class="divider my-1"></div>
     <li>
       <a class="text-error" @click="$emit('delete')">
         <Trash2 :size="16" />
-        Delete Node
+        {{ $t('editor.contextMenu.delete') }}
       </a>
     </li>
   </div>
@@ -36,7 +36,10 @@
 
 <script setup>
 import { ref, computed, watch, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Edit3, GitBranch, Copy, Trash2 } from 'lucide-vue-next'
+
+const { t } = useI18n()
 
 const props = defineProps({
   show: {

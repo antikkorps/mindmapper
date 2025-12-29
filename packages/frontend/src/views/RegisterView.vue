@@ -3,9 +3,9 @@
     <div class="hero-content flex-col lg:flex-row gap-12">
       <!-- Info section -->
       <div class="text-center lg:text-left max-w-md">
-        <h1 class="text-5xl font-bold">Create account</h1>
+        <h1 class="text-5xl font-bold">{{ $t('auth.register.title') }}</h1>
         <p class="py-6">
-          Start organizing your ideas with beautiful, interactive mind maps.
+          {{ $t('auth.register.subtitle') }}
           Free forever!
         </p>
         <div class="flex flex-col gap-2 text-sm text-base-content/70">
@@ -27,12 +27,14 @@
       <!-- Register form -->
       <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
         <form class="card-body" @submit.prevent="handleRegister">
-          <h2 class="text-2xl font-bold text-center mb-4">Register</h2>
+          <h2 class="text-2xl font-bold text-center mb-4">
+            {{ $t('auth.register.title') }}
+          </h2>
 
           <!-- Username -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">Username</span>
+              <span class="label-text">{{ $t('auth.register.username') }}</span>
               <span class="label-text-alt text-base-content/50"
                 >3-50 chars</span
               >
@@ -40,7 +42,7 @@
             <input
               v-model="formData.username"
               type="text"
-              placeholder="johndoe"
+              :placeholder="$t('auth.register.usernamePlaceholder')"
               class="input input-bordered"
               :class="{ 'input-error': errors.username }"
               required
@@ -56,12 +58,12 @@
           <!-- Email -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">Email</span>
+              <span class="label-text">{{ $t('auth.register.email') }}</span>
             </label>
             <input
               v-model="formData.email"
               type="email"
-              placeholder="email@example.com"
+              :placeholder="$t('auth.register.emailPlaceholder')"
               class="input input-bordered"
               :class="{ 'input-error': errors.email }"
               required
@@ -74,13 +76,15 @@
           <!-- Password -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">Password</span>
-              <span class="label-text-alt text-base-content/50">Min 6 chars</span>
+              <span class="label-text">{{ $t('auth.register.password') }}</span>
+              <span class="label-text-alt text-base-content/50"
+                >Min 6 chars</span
+              >
             </label>
             <input
               v-model="formData.password"
               type="password"
-              placeholder="••••••••"
+              :placeholder="$t('auth.register.passwordPlaceholder')"
               class="input input-bordered"
               :class="{ 'input-error': errors.password }"
               required
@@ -100,7 +104,7 @@
             <input
               v-model="formData.confirmPassword"
               type="password"
-              placeholder="••••••••"
+              :placeholder="$t('auth.register.passwordPlaceholder')"
               class="input input-bordered"
               :class="{ 'input-error': errors.confirmPassword }"
               required
@@ -129,17 +133,17 @@
                 v-if="authStore.loading"
                 class="loading loading-spinner loading-sm"
               ></span>
-              <span v-else>Create Account</span>
+              <span v-else>{{ $t('auth.register.submit') }}</span>
             </button>
           </div>
 
           <!-- Login link -->
           <div class="divider">OR</div>
           <p class="text-center text-sm">
-            Already have an account?
-            <router-link to="/login" class="link link-primary"
-              >Login here</router-link
-            >
+            {{ $t('auth.register.hasAccount') }}
+            <router-link to="/login" class="link link-primary">{{
+              $t('auth.register.loginLink')
+            }}</router-link>
           </p>
         </form>
       </div>
@@ -150,11 +154,13 @@
 <script setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/stores/auth'
 import { useToast } from '@/composables/useToast'
 import { Sparkles, XCircle } from 'lucide-vue-next'
 
 const router = useRouter()
+const { t } = useI18n()
 const authStore = useAuthStore()
 
 const formData = reactive({
@@ -178,7 +184,6 @@ const validateForm = () => {
   errors.password = ''
   errors.confirmPassword = ''
 
-  // Username validation
   const usernameRegex = /^[a-zA-Z0-9_]{3,50}$/
   if (!formData.username) {
     errors.username = 'Username is required'
@@ -188,7 +193,6 @@ const validateForm = () => {
     isValid = false
   }
 
-  // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!formData.email) {
     errors.email = 'Email is required'
@@ -198,7 +202,6 @@ const validateForm = () => {
     isValid = false
   }
 
-  // Password validation
   if (!formData.password) {
     errors.password = 'Password is required'
     isValid = false
@@ -207,7 +210,6 @@ const validateForm = () => {
     isValid = false
   }
 
-  // Confirm password validation
   if (!formData.confirmPassword) {
     errors.confirmPassword = 'Please confirm your password'
     isValid = false
@@ -230,11 +232,11 @@ const handleRegister = async () => {
     })
 
     const toast = useToast()
-    toast.success('Account created successfully!')
+    toast.success(t('auth.messages.registerSuccess'))
     router.push('/maps')
   } catch (error) {
     const toast = useToast()
-    toast.error('Registration failed. Please try again.')
+    toast.error(t('auth.messages.registerError'))
     console.error('Registration error:', error)
   }
 }

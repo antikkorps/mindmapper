@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="flex items-center gap-3 mb-6">
         <Keyboard :size="24" class="text-primary" />
-        <h3 class="font-bold text-2xl">Keyboard Shortcuts</h3>
+        <h3 class="font-bold text-2xl">{{ $t('editor.shortcuts.title') }}</h3>
       </div>
 
       <!-- Shortcuts grid -->
@@ -16,7 +16,10 @@
             Editor
           </h4>
           <div class="space-y-2">
-            <ShortcutItem keys="Ctrl + N" description="Add new node" />
+            <ShortcutItem
+              keys="Ctrl + N"
+              :description="$t('editor.shortcuts.shortcuts.addNode')"
+            />
             <ShortcutItem keys="Delete" description="Delete node" />
             <ShortcutItem keys="Ctrl + S" description="Save changes" />
             <ShortcutItem keys="Ctrl + Z" description="Undo" />
@@ -31,10 +34,22 @@
             View
           </h4>
           <div class="space-y-2">
-            <ShortcutItem keys="Ctrl + +" description="Zoom in" />
-            <ShortcutItem keys="Ctrl + -" description="Zoom out" />
-            <ShortcutItem keys="Ctrl + 0" description="Fit view" />
-            <ShortcutItem keys="Esc" description="Close modal/menu" />
+            <ShortcutItem
+              keys="Ctrl + +"
+              :description="$t('editor.controls.zoomIn')"
+            />
+            <ShortcutItem
+              keys="Ctrl + -"
+              :description="$t('editor.controls.zoomOut')"
+            />
+            <ShortcutItem
+              keys="Ctrl + 0"
+              :description="$t('editor.controls.fitView')"
+            />
+            <ShortcutItem
+              keys="Esc"
+              :description="$t('editor.shortcuts.shortcuts.closeMenu')"
+            />
           </div>
         </div>
 
@@ -47,7 +62,10 @@
           <div class="space-y-2">
             <ShortcutItem keys="Double Click" description="Edit node label" />
             <ShortcutItem keys="Right Click" description="Context menu" />
-            <ShortcutItem keys="? or F1" description="Show this help" />
+            <ShortcutItem
+              keys="? or F1"
+              :description="$t('editor.shortcuts.shortcuts.help')"
+            />
           </div>
         </div>
 
@@ -78,15 +96,18 @@
       </button>
     </div>
     <form method="dialog" class="modal-backdrop">
-      <button type="button" @click="close">close</button>
+      <button type="button" @click="close">{{ $t('common.close') }}</button>
     </form>
   </dialog>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Keyboard, Edit3, Eye, Navigation, Search } from 'lucide-vue-next'
 import ShortcutItem from './ShortcutItem.vue'
+
+const { t } = useI18n()
 
 const props = defineProps({
   show: {
