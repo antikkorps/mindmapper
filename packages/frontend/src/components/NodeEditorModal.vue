@@ -2,13 +2,15 @@
   <dialog ref="modalRef" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
       <!-- Header -->
-      <h3 class="font-bold text-lg mb-4">Edit Node</h3>
+      <h3 class="font-bold text-lg mb-4">
+        {{ $t('editor.nodeEditor.title') }}
+      </h3>
 
       <!-- Form -->
       <form @submit.prevent="saveNode">
         <div class="form-control w-full mb-4">
           <label class="label">
-            <span class="label-text">Label</span>
+            <span class="label-text">{{ $t('editor.nodeEditor.label') }}</span>
             <span class="label-text-alt text-base-content/50"
               >{{ nodeLabel.length }}/255</span
             >
@@ -17,7 +19,7 @@
             ref="labelInput"
             v-model="nodeLabel"
             class="textarea textarea-bordered h-24 resize-none"
-            placeholder="Enter node label..."
+            :placeholder="$t('editor.nodeEditor.placeholder')"
             maxlength="255"
             @keydown.enter.exact="saveNode"
             @keydown.esc="close"
@@ -40,15 +42,18 @@
         <!-- Actions -->
         <div class="modal-action">
           <button type="button" class="btn btn-ghost" @click="close">
-            Cancel
+            {{ $t('common.cancel') }}
           </button>
           <button
             type="submit"
             class="btn btn-primary"
             :disabled="!isValid || saving"
           >
-            <span v-if="saving" class="loading loading-spinner loading-sm"></span>
-            <span v-else>Save</span>
+            <span
+              v-if="saving"
+              class="loading loading-spinner loading-sm"
+            ></span>
+            <span v-else>{{ $t('common.save') }}</span>
           </button>
         </div>
       </form>
@@ -62,13 +67,16 @@
       </button>
     </div>
     <form method="dialog" class="modal-backdrop">
-      <button type="button" @click="close">close</button>
+      <button type="button" @click="close">{{ $t('common.close') }}</button>
     </form>
   </dialog>
 </template>
 
 <script setup>
 import { ref, computed, watch, nextTick } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   node: {

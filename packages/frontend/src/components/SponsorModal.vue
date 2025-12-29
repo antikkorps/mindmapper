@@ -90,6 +90,7 @@
 </template>
 
 <script setup>
+import { APP_CONFIG } from '@/config/app.js'
 import { ref, watch } from 'vue'
 import { Coffee, Heart, Github, Star, Info } from 'lucide-vue-next'
 
@@ -100,19 +101,19 @@ const props = defineProps({
   },
   buyMeACoffeeUrl: {
     type: String,
-    required: true,
+    default: APP_CONFIG.links.buyMeACoffee,
   },
   kofiUrl: {
     type: String,
-    default: '',
+    default: APP_CONFIG.links.kofi,
   },
   githubSponsorsUrl: {
     type: String,
-    default: '',
+    default: APP_CONFIG.links.githubSponsors,
   },
   githubRepoUrl: {
     type: String,
-    default: 'https://github.com/yourusername/mindmap',
+    default: APP_CONFIG.links.github,
   },
 })
 

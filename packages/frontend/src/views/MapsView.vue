@@ -1,22 +1,31 @@
 <template>
   <div class="container mx-auto p-8">
     <!-- Header -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+    <div
+      class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
+    >
       <div>
-        <h1 class="text-4xl font-bold">My Mind Maps</h1>
+        <h1 class="text-4xl font-bold">{{ $t('maps.title') }}</h1>
         <p class="text-base-content/70 mt-2">
-          {{ maps.length }} {{ maps.length === 1 ? 'map' : 'maps' }}
+          {{ $t('maps.count', { count: maps.length }) }}
         </p>
       </div>
-      <button class="btn btn-primary gap-2" @click="createMap" :disabled="loading">
+      <button
+        class="btn btn-primary gap-2"
+        @click="createMap"
+        :disabled="loading"
+      >
         <span v-if="loading" class="loading loading-spinner loading-sm"></span>
         <span v-else>+</span>
-        New Map
+        {{ $t('maps.newMap') }}
       </button>
     </div>
 
     <!-- Loading state -->
-    <div v-if="loading && maps.length === 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      v-if="loading && maps.length === 0"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
       <div v-for="i in 6" :key="i" class="skeleton h-48"></div>
     </div>
 
@@ -48,12 +57,12 @@
               d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
             />
           </svg>
-          <h2 class="text-2xl font-bold mb-2">No mind maps yet</h2>
+          <h2 class="text-2xl font-bold mb-2">{{ $t('maps.empty.title') }}</h2>
           <p class="text-base-content/70 mb-6">
-            Create your first mind map to get started
+            {{ $t('maps.empty.description') }}
           </p>
           <button class="btn btn-primary" @click="createMap">
-            Create your first map
+            {{ $t('maps.empty.button') }}
           </button>
         </div>
       </div>
@@ -64,11 +73,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useMapsStore } from '@/stores/maps'
 import { useToast } from '@/composables/useToast'
 import MapCard from '@/components/MapCard.vue'
 
 const router = useRouter()
+const { t } = useI18n()
 const mapsStore = useMapsStore()
 
 const maps = ref([])
@@ -85,7 +96,7 @@ const loadMaps = async () => {
     maps.value = mapsStore.maps
   } catch (error) {
     const toast = useToast()
-    toast.error('Failed to load maps')
+    toast.error(t('maps.messages.loadError'))
     console.error('Error loading maps:', error)
   } finally {
     loading.value = false
@@ -98,11 +109,11 @@ const createMap = async () => {
     const newMap = await mapsStore.createMap('Untitled Map')
     maps.value = mapsStore.maps
     const toast = useToast()
-    toast.success('Map created successfully')
+    toast.success(t('maps.messages.createSuccess'))
     router.push(`/maps/${newMap.id}`)
   } catch (error) {
     const toast = useToast()
-    toast.error('Failed to create map')
+    toast.error(t('maps.messages.createError'))
     console.error('Error creating map:', error)
   } finally {
     loading.value = false
@@ -118,17 +129,16 @@ const updateMap = async ({ id, title }) => {
     await mapsStore.updateMap(id, { title })
     maps.value = mapsStore.maps
     const toast = useToast()
-    toast.success('Map renamed')
+    toast.success(t('maps.messages.renameSuccess'))
   } catch (error) {
     const toast = useToast()
-    toast.error('Failed to rename map')
+    toast.error(t('maps.messages.renameError'))
     console.error('Error updating map:', error)
   }
 }
 
 const deleteMap = async id => {
-  // Confirm deletion with DaisyUI modal would be better, but for now use confirm
-  if (!confirm('Are you sure you want to delete this map? This action cannot be undone.')) {
+  if (!confirm(t('maps.messages.deleteConfirm'))) {
     return
   }
 
@@ -136,18 +146,17 @@ const deleteMap = async id => {
     await mapsStore.deleteMap(id)
     maps.value = mapsStore.maps
     const toast = useToast()
-    toast.success('Map deleted')
+    toast.success(t('maps.messages.deleteSuccess'))
   } catch (error) {
     const toast = useToast()
-    toast.error('Failed to delete map')
+    toast.error(t('maps.messages.deleteError'))
     console.error('Error deleting map:', error)
   }
 }
 
 const duplicateMap = async id => {
-  // TODO: Implement duplicate functionality in backend
   const toast = useToast()
-  toast.info('Duplicate feature coming soon!')
+  toast.info(t('maps.messages.duplicateComing'))
   console.log('Duplicate map:', id)
 }
 </script>

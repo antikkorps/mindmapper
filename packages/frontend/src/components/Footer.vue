@@ -22,13 +22,14 @@
 </template>
 
 <script setup>
+import { APP_CONFIG } from '@/config/app.js'
 import { Github, Heart } from 'lucide-vue-next'
 import { computed } from 'vue'
 
 const props = defineProps({
   githubUrl: {
     type: String,
-    default: 'https://github.com/antikkorps/mindmapper',
+    default: APP_CONFIG.links.github,
   },
 })
 

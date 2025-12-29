@@ -40,6 +40,8 @@
   - ✅ Fixed API response unwrapping (`.data` extraction from backend)
   - ✅ Fixed route ordering (specific routes before generic /:id)
   - ✅ Added viewport overflow prevention for context menu
+  - ✅ Fixed ICU plural syntax for i18n (replaced 'œ' with 'oe')
+  - ✅ Added CSS rules to hide Vue Flow edge markers in exports
 - ✅ **Sponsor/Support Integration** ✨
   - ✅ Footer component with minimal design
   - ✅ SponsorModal with Buy Me a Coffee/Ko-fi/GitHub Sponsors
@@ -48,6 +50,20 @@
   - ✅ Modern landing page with hero, mockups, stats, features
   - ✅ 6 feature cards, 3-step guide, CTAs
   - ✅ Social proof badges and responsive design
+- ✅ **Internationalization (i18n)** ✨
+  - ✅ vue-i18n@9 with EN/FR translations (265 lines each)
+  - ✅ LanguageSelector dropdown in Navbar
+  - ✅ Browser locale detection with localStorage persistence
+  - ✅ Plural support and date/time formats
+  - ✅ Full coverage: home, maps, editor, auth, toasts
+- ✅ **Export Functionality** 💾
+  - ✅ html-to-image + jspdf libraries installed
+  - ✅ Export utility for PNG/PDF/JSON
+  - ✅ ExportModal component with 3 format options
+  - ✅ i18n support (EN/FR translations)
+  - ✅ High-resolution PNG (2x scale) export
+  - ✅ PDF export with auto-orientation
+  - ✅ JSON export for backup/import
 
 ---
 
@@ -169,17 +185,7 @@
   - ✅ Replace user initials with generated avatars
   - ✅ Avatar component (avataaars, bottts, lorelei, personas)
   - ✅ Integrated in Navbar
-  - [ ] Avatar customization in user profile (future)
-
-- [ ] **Internationalization (i18n)** 🎯 NEXT
-  - [ ] Install vue-i18n
-  - [ ] Setup language files (en, fr)
-  - [ ] Extract all hardcoded strings to i18n keys
-  - [ ] Language switcher in Navbar dropdown
-  - [ ] Persist language preference (localStorage)
-  - [ ] Date/time localization
-  - [ ] i18n for toast notifications
-  - [ ] i18n for keyboard shortcuts modal
+- [ ] Avatar customization in user profile (future)
 
 - ✅ **Sponsor/Support Integration** 💰
   - ✅ Add "Support this project" button in Footer (HomeView only)
@@ -204,6 +210,29 @@
   - ✅ Final CTA section with gradient
   - ✅ Footer and SponsorModal integration
   - ✅ Responsive design (mobile-first)
+- ✅ **Internationalization (i18n)** ✨
+  - ✅ Install vue-i18n@9 with DRY configuration
+  - ✅ Setup language files (en.json, fr.json) with structured keys
+  - ✅ Extract all hardcoded strings to i18n keys (all components)
+  - ✅ LanguageSelector component in Navbar dropdown
+  - ✅ Persist language preference (localStorage)
+  - ✅ Date/time localization formats
+  - ✅ Number localization formats
+  - ✅ i18n for toast notifications
+  - ✅ i18n for keyboard shortcuts modal
+  - ✅ Plural support (maps count, nodes count)
+  - ✅ Browser locale detection with fallback
+  - ✅ Full translation coverage: home, maps, editor, auth, toasts
+
+- ✅ **Export Functionality** 💾
+  - ✅ html-to-image + jspdf libraries installed
+  - ✅ Export utility for PNG/PDF/JSON
+  - ✅ ExportModal component with 3 format options
+  - ✅ i18n support (EN/FR translations)
+  - ✅ Integration in MapEditorView dropdown menu
+  - ✅ High-resolution PNG (2x scale) export
+  - ✅ PDF export with auto-orientation
+  - ✅ JSON export for backup/import
 
 - [ ] **Real-time Collaboration Preview** 🚀
   - [ ] Figma-style live cursors (with user avatar/color)
@@ -218,11 +247,6 @@
   - ✅ DRY utility: applyAutoLayout()
   - [ ] Layout animation/transitions (future)
 
-- [ ] Export functionality
-  - [ ] Export as PNG (html-to-image)
-  - [ ] Export as PDF
-  - [ ] Export as JSON
-
 - [ ] Theme System
   - ✅ Theme selector component
   - ✅ Persist theme preference (localStorage)
@@ -230,6 +254,7 @@
   - [ ] Per-map theme settings
 
 - [ ] Advanced Node Features
+  - [ ] Collapse/Expand nodes with click
   - [ ] Rich text editing (markdown support)
   - [ ] Node icons/emojis
   - [ ] Node colors
@@ -426,13 +451,14 @@
 12. ✅ ~~Bug fixes & polish (UUIDs, connections, positioning)~~
 13. ✅ ~~Sponsor integration (Footer + SponsorModal)~~
 14. ✅ ~~Home page redesign with DaisyUI~~
-15. **NEXT OPTIONS:**
-    - **Option A:** Phase 2B - i18n (vue-i18n, FR/EN translations)
-    - **Option B:** Backend testing (increase coverage to 80%+)
-    - **Option C:** Export features (PNG, PDF, JSON)
-    - **Option D:** Advanced node features (colors, icons, rich text)
-    - **Option E:** Custom node styles with DaisyUI
-    - **Option F:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
+15. ✅ ~~Phase 2B: i18n (vue-i18n, FR/EN translations)~~
+16. ✅ ~~Phase 2D: Export features (PNG, PDF, JSON)~~
+17. **NEXT OPTIONS:**
+    - **Option A:** Backend testing (increase coverage to 80%+)
+    - **Option B:** Custom node styles with DaisyUI
+    - **Option C:** Advanced node features (colors, icons, rich text)
+    - **Option D:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
+    - **Option E:** Additional languages (es, de, it, pt)
 
 ### Technical Debt
 
