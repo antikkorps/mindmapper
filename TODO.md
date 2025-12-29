@@ -40,6 +40,8 @@
   - ✅ Fixed API response unwrapping (`.data` extraction from backend)
   - ✅ Fixed route ordering (specific routes before generic /:id)
   - ✅ Added viewport overflow prevention for context menu
+  - ✅ Fixed ICU plural syntax for i18n (replaced 'œ' with 'oe')
+  - ✅ Added CSS rules to hide Vue Flow edge markers in exports
 - ✅ **Sponsor/Support Integration** ✨
   - ✅ Footer component with minimal design
   - ✅ SponsorModal with Buy Me a Coffee/Ko-fi/GitHub Sponsors
@@ -223,12 +225,12 @@
   - ✅ Full translation coverage: home, maps, editor, auth, toasts
 
 - ✅ **Export Functionality** 💾
-  - ✅ Install html-to-image and jspdf libraries
-  - ✅ Create export utility (PNG, PDF, JSON)
+  - ✅ html-to-image + jspdf libraries installed
+  - ✅ Export utility for PNG/PDF/JSON
   - ✅ ExportModal component with 3 format options
-  - ✅ i18n support for export modal (EN/FR)
+  - ✅ i18n support (EN/FR translations)
   - ✅ Integration in MapEditorView dropdown menu
-  - ✅ High-resolution PNG export (2x scale)
+  - ✅ High-resolution PNG (2x scale) export
   - ✅ PDF export with auto-orientation
   - ✅ JSON export for backup/import
 
@@ -450,13 +452,13 @@
 13. ✅ ~~Sponsor integration (Footer + SponsorModal)~~
 14. ✅ ~~Home page redesign with DaisyUI~~
 15. ✅ ~~Phase 2B: i18n (vue-i18n, FR/EN translations)~~
-16. **NEXT OPTIONS:**
+16. ✅ ~~Phase 2D: Export features (PNG, PDF, JSON)~~
+17. **NEXT OPTIONS:**
     - **Option A:** Backend testing (increase coverage to 80%+)
-    - **Option B:** Export features (PNG, PDF, JSON)
+    - **Option B:** Custom node styles with DaisyUI
     - **Option C:** Advanced node features (colors, icons, rich text)
-    - **Option D:** Custom node styles with DaisyUI
-    - **Option E:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
-    - **Option F:** Additional languages (es, de, it, pt)
+    - **Option D:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
+    - **Option E:** Additional languages (es, de, it, pt)
 
 ### Technical Debt
 
