@@ -23,6 +23,7 @@ Application web permettant de créer des cartes mentales (mindmaps) interactives
   - ⏳ Vitest (Frontend - not yet implemented)
   - ⏳ Playwright (E2E - not yet implemented)
 - **UI Framework**: Tailwind CSS + DaisyUI
+- **Export**: html-to-image (PNG), jspdf (PDF)
 
 ### Structure Monorepo
 
@@ -353,6 +354,18 @@ npm run test:watch        # Watch mode
 - Rate limiting anti brute-force
 - Validation Zod sur toutes les entrées
 - Logging complet des actions
+
+### 7. Export Mind Maps
+
+- **Export PNG**: Images haute qualité via `html-to-image`
+  - Capture haute résolution (2x scale)
+  - Format optimisé pour partage
+- **Export PDF**: Documents prêts à l'impression via `jspdf`
+  - Orientation automatique (portrait/paysage)
+  - Format adapté à la taille de la carte
+- **Export JSON**: Données brutes pour sauvegarde
+  - Format structuré (nodes + edges)
+  - Compatible pour import futur
 
 ## Modèle de Données
 
@@ -692,10 +705,10 @@ logger.warn('Rate limit exceeded', { ip: ctx.ip })
 
 ### Phase 2
 
-- **Auto-layout**: Intégration de Dagre pour réorganisation automatique
-- **Export**: PNG/PDF via html-to-image
-- **Thèmes**: Multiples thèmes DaisyUI
-- **Collaboratif**: WebSockets pour édition temps réel multi-utilisateurs
+- ✅ **Auto-layout**: Intégration de Dagre pour réorganisation automatique
+- ✅ **Export**: PNG/PDF/JSON via html-to-image + jspdf
+- ✅ **Thèmes**: Multiples thèmes DaisyUI
+- ⏳ **Collaboratif**: WebSockets pour édition temps réel multi-utilisateurs
 
 ### Phase 3
 

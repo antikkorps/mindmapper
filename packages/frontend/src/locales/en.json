@@ -134,7 +134,7 @@
   },
   "maps": {
     "title": "My Mind Maps",
-    "count": "{count} {count, plural, =1 {map} other {maps}}",
+    "count": "{count} map | {count} maps",
     "newMap": "New Map",
     "empty": {
       "title": "No mind maps yet",
@@ -147,7 +147,7 @@
       "duplicate": "Duplicate",
       "delete": "Delete",
       "open": "Open",
-      "nodes": "{count} {count, plural, =1 {node} other {nodes}}"
+      "nodes": "{count} node | {count} nodes"
     },
     "messages": {
       "loadSuccess": "Maps loaded successfully",
@@ -166,6 +166,15 @@
   },
   "editor": {
     "title": "Mind Map Editor",
+    "export": {
+      "title": "Export Mind Map",
+      "png": "PNG Image",
+      "pngDesc": "Export as high-quality PNG image",
+      "pdf": "PDF Document",
+      "pdfDesc": "Export as PDF for printing or sharing",
+      "json": "JSON Data",
+      "jsonDesc": "Export as JSON for backup or import"
+    },
     "controls": {
       "addNode": "Add Node",
       "autoLayout": "Auto Layout",

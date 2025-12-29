@@ -50,12 +50,13 @@
     </div>
 
     <!-- Vue Flow Canvas -->
-    <div class="flex-1 relative">
+    <div ref="flowContainer" class="flex-1 relative">
       <VueFlow
         v-model="elements"
         :default-zoom="1"
         :min-zoom="0.2"
         :max-zoom="4"
+        :default-edge-options="defaultEdgeOptions"
         @node-drag-stop="onNodeDragStop"
         @connect="onConnect"
         @edge-update="onEdgeUpdate"
@@ -117,6 +118,13 @@
       :show="showKeyboardHelp"
       @close="showKeyboardHelp = false"
     />
+
+    <!-- Export Modal -->
+    <ExportModal
+      :show="showExportModal"
+      @close="showExportModal = false"
+      @export="handleExport"
+    />
   </div>
 </template>
 
@@ -134,9 +142,16 @@ import { useToast } from '@/composables/useToast'
 import { useKeyboardShortcuts } from '@/composables/useKeyboardShortcuts'
 import { debounce } from '@/utils/debounce'
 import { applyAutoLayout, LAYOUT_PRESETS } from '@/utils/autoLayout'
+import {
+  exportAsPng,
+  exportAsPdf,
+  exportAsJson,
+  EXPORT_FORMATS,
+} from '@/utils/export'
 import NodeEditorModal from '@/components/NodeEditorModal.vue'
 import NodeContextMenu from '@/components/NodeContextMenu.vue'
 import KeyboardShortcutsModal from '@/components/KeyboardShortcutsModal.vue'
+import ExportModal from '@/components/ExportModal.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -152,6 +167,21 @@ const elements = ref([])
 const loading = ref(false)
 const saving = ref(false)
 const showKeyboardHelp = ref(false)
+const showExportModal = ref(false)
+const flowContainer = ref(null)
+
+const defaultEdgeOptions = {
+  type: 'smoothstep',
+  animated: false,
+  style: {
+    strokeWidth: 2,
+    stroke: '#94a3b8',
+    fill: 'none',
+  },
+  markerEnd: {
+    type: 'none',
+  },
+}
 
 // Context menu state
 const contextMenu = reactive({
@@ -251,6 +281,11 @@ const onConnect = async connection => {
       source: connection.source,
       target: connection.target,
       type: 'smoothstep',
+      style: {
+        strokeWidth: 2,
+        stroke: '#94a3b8',
+        fill: 'none',
+      },
     })
 
     toast.success('Connection created')
@@ -344,6 +379,11 @@ const duplicateNode = async () => {
         source: node.parentId,
         target: newNode.id,
         type: 'smoothstep',
+        style: {
+          strokeWidth: 2,
+          stroke: '#94a3b8',
+          fill: 'none',
+        },
       })
     }
 
@@ -376,6 +416,11 @@ const addChildNode = async () => {
       source: parentNode.id,
       target: newNode.id,
       type: 'smoothstep',
+      style: {
+        strokeWidth: 2,
+        stroke: '#94a3b8',
+        fill: 'none',
+      },
     })
 
     toast.success('Child node added')
@@ -476,8 +521,57 @@ const fitView = () => {
 }
 
 const exportMap = () => {
-  toast.info('Export feature coming soon!')
-  // TODO: Implement export (PNG/JSON)
+  showExportModal.value = true
+}
+
+const handleExport = async format => {
+  showExportModal.value = false
+
+  const filename = `${mapTitle.value || 'mindmap'}.${format}`
+
+  try {
+    if (format === EXPORT_FORMATS.JSON) {
+      const mapData = {
+        title: mapTitle.value,
+        nodes: elements.value
+          .filter(el => !el.source && !el.target)
+          .map(node => ({
+            id: node.id,
+            label: node.data?.label || '',
+            posX: node.position.x,
+            posY: node.position.y,
+            parentId: null,
+          })),
+        edges: elements.value
+          .filter(el => el.source && el.target)
+          .map(edge => ({
+            source: edge.source,
+            target: edge.target,
+          })),
+      }
+      exportAsJson(mapData, filename)
+    } else {
+      if (!flowContainer.value) {
+        toast.error('Cannot find canvas element')
+        return
+      }
+
+      const flowElement = flowContainer.value.querySelector('.vue-flow')
+
+      if (!flowElement) {
+        toast.error('Cannot find Vue Flow element')
+        return
+      }
+
+      if (format === EXPORT_FORMATS.PNG) {
+        await exportAsPng(flowElement, filename)
+      } else if (format === EXPORT_FORMATS.PDF) {
+        await exportAsPdf(flowElement, filename)
+      }
+    }
+  } catch (error) {
+    console.error('Export error:', error)
+  }
 }
 </script>
 
@@ -486,4 +580,38 @@ const exportMap = () => {
 @import '@vue-flow/core/dist/theme-default.css';
 @import '@vue-flow/controls/dist/style.css';
 @import '@vue-flow/minimap/dist/style.css';
+
+/* Force all edge paths to have no fill */
+.vue-flow__edge path,
+.vue-flow__edge-path,
+g.vue-flow__edge path {
+  stroke: #94a3b8;
+  stroke-width: 2;
+  fill: none !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vue-flow__edge.selected .vue-flow__edge-path,
+.vue-flow__edge.selected path {
+  stroke: #667eea;
+}
+
+/* Remove all edge backgrounds and markers */
+.vue-flow__edge-textbg,
+.vue-flow__edge rect,
+.vue-flow__edge polygon {
+  fill: none !important;
+  display: none !important;
+}
+
+.vue-flow__edge-text {
+  fill: currentColor;
+}
+
+marker,
+.vue-flow__arrowhead,
+.vue-flow__marker {
+  display: none !important;
+}
 </style>

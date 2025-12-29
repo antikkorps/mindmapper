@@ -94,6 +94,11 @@ export const useNodesStore = defineStore('nodes', () => {
         source: node.parentId,
         target: node.id,
         type: 'smoothstep',
+        style: {
+          strokeWidth: 2,
+          stroke: '#94a3b8',
+          fill: 'none',
+        },
       }))
 
     return [...vueFlowNodes, ...vueFlowEdges]

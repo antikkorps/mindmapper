@@ -54,6 +54,14 @@
   - ✅ Browser locale detection with localStorage persistence
   - ✅ Plural support and date/time formats
   - ✅ Full coverage: home, maps, editor, auth, toasts
+- ✅ **Export Functionality** 💾
+  - ✅ html-to-image + jspdf libraries installed
+  - ✅ Export utility for PNG/PDF/JSON
+  - ✅ ExportModal component with 3 format options
+  - ✅ i18n support (EN/FR translations)
+  - ✅ High-resolution PNG (2x scale) export
+  - ✅ PDF export with auto-orientation
+  - ✅ JSON export for backup/import
 
 ---
 
@@ -214,6 +222,16 @@
   - ✅ Browser locale detection with fallback
   - ✅ Full translation coverage: home, maps, editor, auth, toasts
 
+- ✅ **Export Functionality** 💾
+  - ✅ Install html-to-image and jspdf libraries
+  - ✅ Create export utility (PNG, PDF, JSON)
+  - ✅ ExportModal component with 3 format options
+  - ✅ i18n support for export modal (EN/FR)
+  - ✅ Integration in MapEditorView dropdown menu
+  - ✅ High-resolution PNG export (2x scale)
+  - ✅ PDF export with auto-orientation
+  - ✅ JSON export for backup/import
+
 - [ ] **Real-time Collaboration Preview** 🚀
   - [ ] Figma-style live cursors (with user avatar/color)
   - [ ] "X users online" indicator
@@ -226,11 +244,6 @@
   - ✅ Auto fit-view after layout
   - ✅ DRY utility: applyAutoLayout()
   - [ ] Layout animation/transitions (future)
-
-- [ ] Export functionality
-  - [ ] Export as PNG (html-to-image)
-  - [ ] Export as PDF
-  - [ ] Export as JSON
 
 - [ ] Theme System
   - ✅ Theme selector component
