@@ -44,24 +44,13 @@
       <!-- Empty state -->
       <div v-if="maps.length === 0" class="col-span-full text-center py-20">
         <div class="max-w-md mx-auto">
-          <svg
-            class="w-24 h-24 mx-auto text-base-content/20 mb-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
+          <Inbox class="mx-auto text-base-content/20 mb-4" :size="96" />
           <h2 class="text-2xl font-bold mb-2">{{ $t('maps.empty.title') }}</h2>
           <p class="text-base-content/70 mb-6">
             {{ $t('maps.empty.description') }}
           </p>
-          <button class="btn btn-primary" @click="createMap">
+          <button class="btn btn-primary gap-2" @click="createMap">
+            <Plus :size="20" />
             {{ $t('maps.empty.button') }}
           </button>
         </div>
@@ -77,6 +66,7 @@ import { useI18n } from 'vue-i18n'
 import { useMapsStore } from '@/stores/maps'
 import { useToast } from '@/composables/useToast'
 import MapCard from '@/components/MapCard.vue'
+import { Inbox, Plus } from 'lucide-vue-next'
 
 const router = useRouter()
 const { t } = useI18n()

@@ -27,6 +27,31 @@ export const createNodeSchema = z.object({
     .nullable()
     .optional(),
   mapId: z.string().uuid('Invalid map ID format'),
+  styleColor: z
+    .enum([
+      'primary',
+      'secondary',
+      'accent',
+      'neutral',
+      'info',
+      'success',
+      'warning',
+      'error',
+    ])
+    .optional()
+    .default('neutral'),
+  styleShape: z
+    .enum(['rectangle', 'rounded', 'pill', 'diamond'])
+    .optional()
+    .default('rounded'),
+  styleType: z
+    .enum(['solid', 'outline', 'ghost', 'filled'])
+    .optional()
+    .default('solid'),
+  textRotation: z
+    .enum(['follow', 'horizontal'])
+    .optional()
+    .default('horizontal'),
 })
 
 export const updateNodeSchema = z.object({
@@ -35,19 +60,28 @@ export const updateNodeSchema = z.object({
     .min(1, 'Label cannot be empty')
     .max(255, 'Label must be at most 255 characters')
     .optional(),
-  posX: z
-    .number()
-    .finite('Position X must be a valid number')
-    .optional(),
-  posY: z
-    .number()
-    .finite('Position Y must be a valid number')
-    .optional(),
+  posX: z.number().finite('Position X must be a valid number').optional(),
+  posY: z.number().finite('Position Y must be a valid number').optional(),
   parentId: z
     .string()
     .uuid('Invalid parent node ID format')
     .nullable()
     .optional(),
+  styleColor: z
+    .enum([
+      'primary',
+      'secondary',
+      'accent',
+      'neutral',
+      'info',
+      'success',
+      'warning',
+      'error',
+    ])
+    .optional(),
+  styleShape: z.enum(['rectangle', 'rounded', 'pill', 'diamond']).optional(),
+  styleType: z.enum(['solid', 'outline', 'ghost', 'filled']).optional(),
+  textRotation: z.enum(['follow', 'horizontal']).optional(),
 })
 
 export const updateNodePositionSchema = z.object({

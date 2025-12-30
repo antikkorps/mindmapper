@@ -59,7 +59,17 @@ const nodeController = {
    */
   async createNode(ctx) {
     try {
-      const { label, posX, posY, parentId, mapId } = ctx.request.body
+      const {
+        label,
+        posX,
+        posY,
+        parentId,
+        mapId,
+        styleColor,
+        styleShape,
+        styleType,
+        textRotation,
+      } = ctx.request.body
 
       if (!mapId) {
         ctx.status = 400
@@ -76,6 +86,10 @@ const nodeController = {
         posY: posY ?? 0,
         parentId: parentId || null,
         mapId,
+        styleColor: styleColor || 'neutral',
+        styleShape: styleShape || 'rounded',
+        styleType: styleType || 'solid',
+        textRotation: textRotation || 'horizontal',
       })
 
       ctx.status = 201
@@ -98,7 +112,16 @@ const nodeController = {
   async updateNode(ctx) {
     try {
       const { id } = ctx.params
-      const { label, posX, posY, parentId } = ctx.request.body
+      const {
+        label,
+        posX,
+        posY,
+        parentId,
+        styleColor,
+        styleShape,
+        styleType,
+        textRotation,
+      } = ctx.request.body
 
       const nodeExists = await nodeService.exists(id)
       if (!nodeExists) {
@@ -115,6 +138,10 @@ const nodeController = {
       if (posX !== undefined) updateData.posX = posX
       if (posY !== undefined) updateData.posY = posY
       if (parentId !== undefined) updateData.parentId = parentId
+      if (styleColor !== undefined) updateData.styleColor = styleColor
+      if (styleShape !== undefined) updateData.styleShape = styleShape
+      if (styleType !== undefined) updateData.styleType = styleType
+      if (textRotation !== undefined) updateData.textRotation = textRotation
 
       const affectedCount = await nodeService.update(id, updateData)
 
