@@ -203,6 +203,7 @@
       "title": "Edit Node",
       "label": "Label",
       "placeholder": "Enter node text...",
+      "icon": "Icon",
       "save": "Save",
       "cancel": "Cancel"
     },

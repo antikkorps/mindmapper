@@ -110,6 +110,7 @@ export const useNodesStore = defineStore('nodes', () => {
     position: { x: node.posX, y: node.posY },
     data: {
       label: node.label,
+      icon: node.icon || null,
       style: {
         color: node.styleColor || 'neutral',
         shape: node.styleShape || 'rounded',

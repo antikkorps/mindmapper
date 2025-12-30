@@ -52,6 +52,7 @@ export const createNodeSchema = z.object({
     .enum(['follow', 'horizontal'])
     .optional()
     .default('horizontal'),
+  icon: z.string().optional().nullable(),
 })
 
 export const updateNodeSchema = z.object({
@@ -82,6 +83,7 @@ export const updateNodeSchema = z.object({
   styleShape: z.enum(['rectangle', 'rounded', 'pill', 'diamond']).optional(),
   styleType: z.enum(['solid', 'outline', 'ghost', 'filled']).optional(),
   textRotation: z.enum(['follow', 'horizontal']).optional(),
+  icon: z.string().optional().nullable(),
 })
 
 export const updateNodePositionSchema = z.object({

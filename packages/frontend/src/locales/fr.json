@@ -203,6 +203,7 @@
       "title": "Modifier le noeud",
       "label": "Libellé",
       "placeholder": "Entrez le texte du noeud...",
+      "icon": "Icône",
       "save": "Enregistrer",
       "cancel": "Annuler"
     },

@@ -4,7 +4,8 @@
     class="hover:scale-105 active:scale-95 cursor-pointer"
   >
     <div :class="classes.text" :style="textStyle">
-      {{ label }}
+      <span v-if="icon" class="mr-1 text-lg">{{ icon }}</span>
+      <span>{{ label }}</span>
     </div>
 
     <Handle
@@ -41,6 +42,8 @@ const props = defineProps({
 })
 
 const label = computed(() => props.data.label || 'New Node')
+
+const icon = computed(() => props.data.icon || null)
 
 const nodeStyle = computed(() => props.data.style || {})
 

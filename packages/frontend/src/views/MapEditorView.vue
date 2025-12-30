@@ -456,7 +456,7 @@ const closeEditorModal = () => {
   editorModal.node = null
 }
 
-const saveNodeLabel = async ({ id, label, style }) => {
+const saveNodeLabel = async ({ id, label, style, icon }) => {
   try {
     const updateData = { label }
     if (style) {
@@ -464,6 +464,9 @@ const saveNodeLabel = async ({ id, label, style }) => {
       updateData.styleShape = style.shape
       updateData.styleType = style.style
       updateData.textRotation = style.textRotation || 'horizontal'
+    }
+    if (icon !== undefined) {
+      updateData.icon = icon
     }
 
     await nodesStore.updateNode(id, updateData)
@@ -474,6 +477,9 @@ const saveNodeLabel = async ({ id, label, style }) => {
       elements.value[nodeIndex].data.label = label
       if (style) {
         elements.value[nodeIndex].data.style = style
+      }
+      if (icon !== undefined) {
+        elements.value[nodeIndex].data.icon = icon
       }
     }
 

@@ -69,6 +69,7 @@ const nodeController = {
         styleShape,
         styleType,
         textRotation,
+        icon,
       } = ctx.request.body
 
       if (!mapId) {
@@ -90,6 +91,7 @@ const nodeController = {
         styleShape: styleShape || 'rounded',
         styleType: styleType || 'solid',
         textRotation: textRotation || 'horizontal',
+        icon: icon || null,
       })
 
       ctx.status = 201
@@ -121,6 +123,7 @@ const nodeController = {
         styleShape,
         styleType,
         textRotation,
+        icon,
       } = ctx.request.body
 
       const nodeExists = await nodeService.exists(id)
@@ -142,6 +145,7 @@ const nodeController = {
       if (styleShape !== undefined) updateData.styleShape = styleShape
       if (styleType !== undefined) updateData.styleType = styleType
       if (textRotation !== undefined) updateData.textRotation = textRotation
+      if (icon !== undefined) updateData.icon = icon
 
       const affectedCount = await nodeService.update(id, updateData)
 

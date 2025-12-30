@@ -29,6 +29,11 @@
           </label>
         </div>
 
+        <!-- Icon Picker -->
+        <div class="form-control w-full mb-4">
+          <IconPicker v-model="nodeIcon" />
+        </div>
+
         <!-- Node Style Selector -->
         <div class="form-control w-full mb-4">
           <NodeStyleSelector v-model="nodeStyle" />
@@ -81,6 +86,7 @@
 import { ref, computed, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import NodeStyleSelector from './NodeStyleSelector.vue'
+import IconPicker from './IconPicker.vue'
 
 const { t } = useI18n()
 
@@ -106,6 +112,7 @@ const nodeStyle = ref({
   style: 'solid',
   textRotation: 'horizontal',
 })
+const nodeIcon = ref(null)
 const error = ref('')
 const saving = ref(false)
 
@@ -125,6 +132,7 @@ watch(
         style: 'solid',
         textRotation: 'horizontal',
       }
+      nodeIcon.value = props.node?.data?.icon || null
       error.value = ''
       modalRef.value?.showModal()
       await nextTick()
@@ -152,6 +160,7 @@ const saveNode = async () => {
       id: props.node.id,
       label: nodeLabel.value.trim(),
       style: nodeStyle.value,
+      icon: nodeIcon.value,
     })
     close()
   } catch (err) {

@@ -77,6 +77,11 @@ const Node = sequelize.define(
       allowNull: true,
       defaultValue: 'horizontal',
     },
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
+    },
   },
   {
     tableName: 'nodes',
