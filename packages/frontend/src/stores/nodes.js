@@ -106,9 +106,18 @@ export const useNodesStore = defineStore('nodes', () => {
 
   const convertNodeToVueFlow = node => ({
     id: node.id,
-    type: 'default',
+    type: 'custom',
     position: { x: node.posX, y: node.posY },
-    data: { label: node.label },
+    data: {
+      label: node.label,
+      icon: node.icon || null,
+      style: {
+        color: node.styleColor || 'neutral',
+        shape: node.styleShape || 'rounded',
+        style: node.styleType || 'solid',
+        textRotation: node.textRotation || 'horizontal',
+      },
+    },
   })
 
   return {

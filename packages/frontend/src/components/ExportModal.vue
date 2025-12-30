@@ -1,14 +1,20 @@
 <template>
   <div v-if="show" class="modal modal-open">
     <div class="modal-box">
-      <h3 class="font-bold text-lg mb-4">📦 {{ $t('editor.export.title') }}</h3>
+      <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+        <Download :size="24" class="text-primary" />
+        {{ $t('editor.export.title') }}
+      </h3>
 
       <div class="grid grid-cols-1 gap-4">
         <button
-          class="btn btn-lg btn-outline justify-start gap-4"
+          class="btn btn-lg btn-outline justify-start gap-4 group hover:border-primary"
           @click="handleExport('png')"
         >
-          <span class="text-2xl">🖼️</span>
+          <Image
+            :size="28"
+            class="group-hover:text-primary transition-colors"
+          />
           <div class="text-left">
             <div class="font-bold">{{ $t('editor.export.png') }}</div>
             <div class="text-sm opacity-70">
@@ -18,10 +24,13 @@
         </button>
 
         <button
-          class="btn btn-lg btn-outline justify-start gap-4"
+          class="btn btn-lg btn-outline justify-start gap-4 group hover:border-secondary"
           @click="handleExport('pdf')"
         >
-          <span class="text-2xl">📄</span>
+          <FileText
+            :size="28"
+            class="group-hover:text-secondary transition-colors"
+          />
           <div class="text-left">
             <div class="font-bold">{{ $t('editor.export.pdf') }}</div>
             <div class="text-sm opacity-70">
@@ -31,10 +40,10 @@
         </button>
 
         <button
-          class="btn btn-lg btn-outline justify-start gap-4"
+          class="btn btn-lg btn-outline justify-start gap-4 group hover:border-accent"
           @click="handleExport('json')"
         >
-          <span class="text-2xl">📋</span>
+          <Code :size="28" class="group-hover:text-accent transition-colors" />
           <div class="text-left">
             <div class="font-bold">{{ $t('editor.export.json') }}</div>
             <div class="text-sm opacity-70">
@@ -45,21 +54,20 @@
       </div>
 
       <div class="modal-action">
-        <form method="dialog">
-          <button class="btn" @click="$emit('close')">
-            {{ $t('common.close') }}
-          </button>
-        </form>
+        <button class="btn" @click="$emit('close')">
+          {{ $t('common.close') }}
+        </button>
       </div>
     </div>
-    <form method="dialog" class="modal-backdrop">
-      <button @click="$emit('close')">close</button>
-    </form>
+    <div class="modal-backdrop" @click="$emit('close')">
+      <button class="hidden">close</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { Download, Image, FileText, Code } from 'lucide-vue-next'
 
 const { t } = useI18n()
 

@@ -34,15 +34,22 @@
             class="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-48"
           >
             <li>
-              <a @click="autoLayout"
-                >🔄 {{ $t('editor.controls.autoLayout') }}</a
-              >
+              <a @click="autoLayout" class="gap-2">
+                <LayoutGrid :size="16" />
+                {{ $t('editor.controls.autoLayout') }}
+              </a>
             </li>
             <li>
-              <a @click="fitView">📐 {{ $t('editor.controls.fitView') }}</a>
+              <a @click="fitView" class="gap-2">
+                <Expand :size="16" />
+                {{ $t('editor.controls.fitView') }}
+              </a>
             </li>
             <li class="border-t border-base-300 mt-1 pt-1">
-              <a @click="exportMap">💾 Export</a>
+              <a @click="exportMap" class="gap-2">
+                <Download :size="16" />
+                {{ $t('editor.controls.export') }}
+              </a>
             </li>
           </ul>
         </div>
@@ -53,6 +60,7 @@
     <div ref="flowContainer" class="flex-1 relative">
       <VueFlow
         v-model="elements"
+        :node-types="nodeTypes"
         :default-zoom="1"
         :min-zoom="0.2"
         :max-zoom="4"
@@ -129,7 +137,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, shallowRef, markRaw } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
@@ -152,6 +160,8 @@ import NodeEditorModal from '@/components/NodeEditorModal.vue'
 import NodeContextMenu from '@/components/NodeContextMenu.vue'
 import KeyboardShortcutsModal from '@/components/KeyboardShortcutsModal.vue'
 import ExportModal from '@/components/ExportModal.vue'
+import CustomNode from '@/components/CustomNode.vue'
+import { LayoutGrid, Expand, Download } from 'lucide-vue-next'
 
 const route = useRoute()
 const router = useRouter()
@@ -160,6 +170,11 @@ const nodesStore = useNodesStore()
 const mapsStore = useMapsStore()
 const toast = useToast()
 const { fitView: vueFlowFitView } = useVueFlow()
+
+// Node types configuration (markRaw to avoid reactivity warning)
+const nodeTypes = shallowRef({
+  custom: markRaw(CustomNode),
+})
 
 const mapId = route.params.id
 const mapTitle = ref('')
@@ -441,14 +456,31 @@ const closeEditorModal = () => {
   editorModal.node = null
 }
 
-const saveNodeLabel = async ({ id, label }) => {
+const saveNodeLabel = async ({ id, label, style, icon }) => {
   try {
-    await nodesStore.updateNode(id, { label })
+    const updateData = { label }
+    if (style) {
+      updateData.styleColor = style.color
+      updateData.styleShape = style.shape
+      updateData.styleType = style.style
+      updateData.textRotation = style.textRotation || 'horizontal'
+    }
+    if (icon !== undefined) {
+      updateData.icon = icon
+    }
+
+    await nodesStore.updateNode(id, updateData)
 
     // Update node in elements
     const nodeIndex = elements.value.findIndex(el => el.id === id)
     if (nodeIndex !== -1 && elements.value[nodeIndex].data) {
       elements.value[nodeIndex].data.label = label
+      if (style) {
+        elements.value[nodeIndex].data.style = style
+      }
+      if (icon !== undefined) {
+        elements.value[nodeIndex].data.icon = icon
+      }
     }
 
     toast.success(t('editor.messages.nodeUpdated'))

@@ -48,6 +48,40 @@ const Node = sequelize.define(
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
+    styleColor: {
+      type: DataTypes.ENUM(
+        'primary',
+        'secondary',
+        'accent',
+        'neutral',
+        'info',
+        'success',
+        'warning',
+        'error'
+      ),
+      allowNull: true,
+      defaultValue: 'neutral',
+    },
+    styleShape: {
+      type: DataTypes.ENUM('rectangle', 'rounded', 'pill', 'diamond'),
+      allowNull: true,
+      defaultValue: 'rounded',
+    },
+    styleType: {
+      type: DataTypes.ENUM('solid', 'outline', 'ghost', 'filled'),
+      allowNull: true,
+      defaultValue: 'solid',
+    },
+    textRotation: {
+      type: DataTypes.ENUM('follow', 'horizontal'),
+      allowNull: true,
+      defaultValue: 'horizontal',
+    },
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
+    },
   },
   {
     tableName: 'nodes',

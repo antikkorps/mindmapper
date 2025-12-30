@@ -52,7 +52,7 @@
 
           <div class="flex gap-4 flex-wrap">
             <router-link to="/register" class="btn btn-accent btn-lg gap-2">
-              <Zap :size="20" />
+              <Rocket :size="20" />
               {{ $t('home.hero.cta.startFree') }}
             </router-link>
             <router-link
@@ -67,19 +67,19 @@
           <!-- Social proof -->
           <div class="flex items-center gap-6 mt-8 text-white/60">
             <div class="flex items-center gap-2">
-              <Star :size="16" fill="currentColor" />
+              <Github :size="16" />
               <span class="text-sm">{{
                 $t('home.hero.socialProof.openSource')
               }}</span>
             </div>
             <div class="flex items-center gap-2">
-              <Users :size="16" />
+              <DollarSign :size="16" />
               <span class="text-sm">{{
                 $t('home.hero.socialProof.freeForever')
               }}</span>
             </div>
             <div class="flex items-center gap-2">
-              <Shield :size="16" />
+              <ShieldCheck :size="16" />
               <span class="text-sm">{{
                 $t('home.hero.socialProof.privacyFirst')
               }}</span>
@@ -93,7 +93,7 @@
     <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
       <div class="stat">
         <div class="stat-figure text-primary">
-          <Layers :size="32" />
+          <Network :size="32" />
         </div>
         <div class="stat-title">{{ $t('home.stats.totalNodes.title') }}</div>
         <div class="stat-value text-primary">
@@ -104,7 +104,7 @@
 
       <div class="stat">
         <div class="stat-figure text-secondary">
-          <Zap :size="32" />
+          <CloudCheck :size="32" />
         </div>
         <div class="stat-title">{{ $t('home.stats.realtimeSave.title') }}</div>
         <div class="stat-value text-secondary">
@@ -145,7 +145,7 @@
             <div class="card-body">
               <div class="flex items-center gap-3 mb-4">
                 <div class="badge badge-primary badge-lg p-4">
-                  <GitBranch :size="24" />
+                  <TreePine :size="24" />
                 </div>
                 <h3 class="card-title">
                   {{ $t('home.features.hierarchical.title') }}
@@ -183,7 +183,7 @@
             <div class="card-body">
               <div class="flex items-center gap-3 mb-4">
                 <div class="badge badge-accent badge-lg p-4">
-                  <Keyboard :size="24" />
+                  <Command :size="24" />
                 </div>
                 <h3 class="card-title">
                   {{ $t('home.features.shortcuts.title') }}
@@ -202,7 +202,7 @@
             <div class="card-body">
               <div class="flex items-center gap-3 mb-4">
                 <div class="badge badge-info badge-lg p-4">
-                  <Save :size="24" />
+                  <DatabaseBackup :size="24" />
                 </div>
                 <h3 class="card-title">
                   {{ $t('home.features.autosave.title') }}
@@ -221,7 +221,7 @@
             <div class="card-body">
               <div class="flex items-center gap-3 mb-4">
                 <div class="badge badge-success badge-lg p-4">
-                  <Users :size="24" />
+                  <Smile :size="24" />
                 </div>
                 <h3 class="card-title">
                   {{ $t('home.features.avatars.title') }}
@@ -311,7 +311,7 @@
             {{ $t('home.cta.description') }}
           </p>
           <router-link to="/register" class="btn btn-accent btn-lg gap-2">
-            <Zap :size="20" />
+            <Rocket :size="20" />
             {{ $t('home.cta.button') }}
           </router-link>
         </div>
@@ -338,17 +338,18 @@ import Footer from '@/components/Footer.vue'
 import SponsorModal from '@/components/SponsorModal.vue'
 import { APP_CONFIG } from '@/config/app.js'
 import {
-  GitBranch,
-  Keyboard,
-  Layers,
+  Command,
+  DatabaseBackup,
+  DollarSign,
+  Github,
   LogIn,
+  Network,
   Palette,
-  Save,
-  Shield,
+  Rocket,
+  ShieldCheck,
+  Smile,
   Sparkles,
-  Star,
-  Users,
-  Zap,
+  TreePine,
 } from 'lucide-vue-next'
 import { ref } from 'vue'
 

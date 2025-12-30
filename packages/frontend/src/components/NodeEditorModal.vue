@@ -29,6 +29,16 @@
           </label>
         </div>
 
+        <!-- Icon Picker -->
+        <div class="form-control w-full mb-4">
+          <IconPicker v-model="nodeIcon" />
+        </div>
+
+        <!-- Node Style Selector -->
+        <div class="form-control w-full mb-4">
+          <NodeStyleSelector v-model="nodeStyle" />
+        </div>
+
         <!-- Node metadata (optional info) -->
         <div class="flex gap-2 text-sm text-base-content/70 mb-4">
           <div class="badge badge-outline badge-sm">
@@ -75,6 +85,8 @@
 <script setup>
 import { ref, computed, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
+import NodeStyleSelector from './NodeStyleSelector.vue'
+import IconPicker from './IconPicker.vue'
 
 const { t } = useI18n()
 
@@ -94,6 +106,13 @@ const emit = defineEmits(['close', 'save', 'delete'])
 const modalRef = ref(null)
 const labelInput = ref(null)
 const nodeLabel = ref('')
+const nodeStyle = ref({
+  color: 'neutral',
+  shape: 'rounded',
+  style: 'solid',
+  textRotation: 'horizontal',
+})
+const nodeIcon = ref(null)
 const error = ref('')
 const saving = ref(false)
 
@@ -107,6 +126,13 @@ watch(
   async newValue => {
     if (newValue) {
       nodeLabel.value = props.node?.data?.label || ''
+      nodeStyle.value = props.node?.data?.style || {
+        color: 'neutral',
+        shape: 'rounded',
+        style: 'solid',
+        textRotation: 'horizontal',
+      }
+      nodeIcon.value = props.node?.data?.icon || null
       error.value = ''
       modalRef.value?.showModal()
       await nextTick()
@@ -133,6 +159,8 @@ const saveNode = async () => {
     await emit('save', {
       id: props.node.id,
       label: nodeLabel.value.trim(),
+      style: nodeStyle.value,
+      icon: nodeIcon.value,
     })
     close()
   } catch (err) {

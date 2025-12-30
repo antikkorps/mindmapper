@@ -11,7 +11,7 @@ export const APP_CONFIG = {
   links: {
     github: 'https://github.com/antikkorps/mindmapper',
     buyMeACoffee: 'https://buymeacoffee.com/fvienot',
-    kofi: '', // Optional - leave empty if not used
+    kofi: 'https://ko-fi.com/franckvienot', // Optional - leave empty if not used
     githubSponsors: '', // Optional - leave empty if not used
   },
 

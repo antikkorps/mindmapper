@@ -64,6 +64,33 @@
   - ✅ High-resolution PNG (2x scale) export
   - ✅ PDF export with auto-orientation
   - ✅ JSON export for backup/import
+- ✅ **Phase 2E: Custom Node Styles with DaisyUI** ✨
+  - ✅ Created node style presets system (colors, shapes, styles)
+  - ✅ Created CustomNode.vue component for Vue Flow
+  - ✅ Created NodeStyleSelector component with live preview
+  - ✅ Updated Node model with style fields (styleColor, styleShape, styleType)
+  - ✅ Updated Zod validation schemas for node styles
+  - ✅ Database migration applied (add-node-styles.cjs)
+  - ✅ Integrated style selector in NodeEditorModal
+  - ✅ Updated stores to handle node styles
+  - ✅ Fixed controller to save style fields (updateNode, createNode)
+  - ✅ Added text rotation option for diamond shape (horizontal/follow)
+  - ✅ Database migration for textRotation field (add-text-rotation.cjs)
+  - ✅ Fixed Vue reactivity warning (markRaw for nodeTypes)
+  - ✅ 8 color presets (primary, secondary, accent, neutral, info, success, warning, error)
+  - ✅ 4 shape presets (rectangle, rounded, pill, diamond)
+  - ✅ 4 style presets (solid, outline, ghost, filled)
+- ✅ **Phase 2F: Node Icons with Emoji Picker** ✨
+  - ✅ Added icon field to Node model (STRING, nullable)
+  - ✅ Created IconPicker component with 30 emojis + custom input
+  - ✅ Updated Zod validation for icon field
+  - ✅ Database migration applied (add-node-icon.cjs)
+  - ✅ Updated controllers (createNode, updateNode) to handle icon
+  - ✅ Integrated IconPicker in NodeEditorModal
+  - ✅ Display icons in CustomNode component (with margin)
+  - ✅ Updated stores to handle icons (convertNodeToVueFlow)
+  - ✅ Updated MapEditorView saveNodeLabel to pass icon
+  - ✅ i18n support (en/fr)
 
 ---
 
@@ -75,6 +102,8 @@
   - ✅ Run initial migrations (users, maps, nodes)
   - ✅ Test database schema
   - ✅ Seed development data
+  - ✅ add-node-styles migration (styleColor, styleShape, styleType)
+  - ✅ add-text-rotation migration (textRotation for diamond nodes)
 
 - ✅ Complete API Controllers
   - ✅ Users endpoints (CRUD)
@@ -112,7 +141,7 @@
   - ✅ Configure Vue Flow properly
   - ✅ Implement node dragging with debounced save (300ms)
   - ✅ Implement edge creation (parent-child relationships)
-  - [ ] Custom node styles with DaisyUI
+  - ✅ Custom node styles with DaisyUI
   - ✅ Background pattern (dot grid)
   - ✅ Controls (zoom, fit view, pan)
   - ✅ Minimap
@@ -256,10 +285,10 @@
 - [ ] Advanced Node Features
   - [ ] Collapse/Expand nodes with click
   - [ ] Rich text editing (markdown support)
-  - [ ] Node icons/emojis
-  - [ ] Node colors
+  - ✅ Node icons/emojis (30 presets + custom input)
+  - ✅ Node colors (8 DaisyUI color presets)
   - [ ] Node sizing options
-  - [ ] Custom node shapes (rectangle, circle, diamond)
+  - ✅ Custom node shapes (rectangle, rounded, pill, diamond)
 
 - ✅ **Keyboard Shortcuts**
   - ✅ Add node (Ctrl+N)
@@ -453,12 +482,14 @@
 14. ✅ ~~Home page redesign with DaisyUI~~
 15. ✅ ~~Phase 2B: i18n (vue-i18n, FR/EN translations)~~
 16. ✅ ~~Phase 2D: Export features (PNG, PDF, JSON)~~
-17. **NEXT OPTIONS:**
+17. ✅ ~~Phase 2E: Custom node styles with DaisyUI~~
+18. ✅ ~~Phase 2F: Node icons with emoji picker~~
+19. **NEXT OPTIONS:**
     - **Option A:** Backend testing (increase coverage to 80%+)
-    - **Option B:** Custom node styles with DaisyUI
-    - **Option C:** Advanced node features (colors, icons, rich text)
-    - **Option D:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
-    - **Option E:** Additional languages (es, de, it, pt)
+    - **Option B:** Advanced node features (rich text, collapse/expand, sizing)
+    - **Option C:** Real-time collaboration with Figma-style cursors (WebSockets) 🔥
+    - **Option D:** Additional languages (es, de, it, pt)
+    - **Option E:** Per-map theme settings
 
 ### Technical Debt
 
